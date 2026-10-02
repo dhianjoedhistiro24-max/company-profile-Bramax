@@ -1,0 +1,122 @@
+/* =========================
+   INSIGHTS PAGE STYLES
+========================= */
+.insights-main-section {
+    padding: 140px 7% 100px;
+    background: #111111;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+.insights-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.insights-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 60px;
+}
+
+.insights-header h2 {
+    font-size: clamp(32px, 4vw, 46px);
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.insights-header h2 span {
+    background: linear-gradient(90deg, #e40046, #ff4f81);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.insights-header p {
+    color: #a0a0a0;
+    line-height: 1.6;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.insight-card {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.insight-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(228, 0, 70, 0.4);
+}
+
+.insight-image-placeholder {
+    height: 180px;
+    background: linear-gradient(135deg, #222222, #2a2a2a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.insight-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.insight-date {
+    font-size: 12px;
+    font-weight: 600;
+    color: #e40046;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.insight-content h3 {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.insight-content p {
+    font-size: 14px;
+    color: #a0a0a0;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.insight-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ff4f81;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.insight-link:hover {
+    color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+    .insights-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .insights-main-section { padding: 120px 20px 60px; }
+    .insights-grid { grid-template-columns: 1fr; }
+}

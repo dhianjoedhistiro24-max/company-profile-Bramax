@@ -1,123 +1,141 @@
-<!DOCTYPE html>
-<html lang="id">
+<nav class="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-[#111111]/90 backdrop-blur-md">
 
-<head>
+```
+<div class="mx-auto flex max-w-[1200px] items-center justify-between px-[7%] py-5">
 
-    <meta charset="UTF-8">
+    <!-- LOGO -->
+    <a href="/" class="text-2xl font-bold tracking-wide text-white">
+        BRAMAX
+    </a>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <!-- DESKTOP MENU -->
+    <div id="navbarMenu" class="hidden items-center gap-7 md:flex">
 
-    <title>
-        PT BRAMAX Teknologi Indonesia
-    </title>
-
-    @vite([
-        'resources/css/style.css',
-        'resources/js/app.js'
-    ])
-
-</head>
-
-<body>
-
-    <!-- =========================
-         NAVBAR
-    ========================== -->
-
-   <nav class="navbar">
-    <div class="navbar-container">
-
-        <!-- Logo -->
-        <a href="/" class="navbar-logo">
-            BRAMAX
+        <a href="/" class="text-sm text-white transition hover:text-[#ff4f81]">
+            Home
         </a>
 
-        <!-- Menu -->
-        <div class="navbar-menu">
-            <a href="/" class="nav-link">Home</a>
-            <a href="/about" class="nav-link">About</a>
+        <a href="/#about" class="text-sm text-white transition hover:text-[#ff4f81]">
+            About
+        </a>
 
-            <div class="nav-dropdown">
-                <button class="nav-link dropdown-toggle">
-                    Solutions
-                    <span>⌄</span>
-                </button>
+        <!-- SOLUTIONS -->
+        <div class="group relative">
 
-                <div class="dropdown-menu">
-                    <a href="/solutions/digital">Digital & Software</a>
-                    <a href="/solutions/business">Business Support</a>
-                    <a href="/solutions/creative">Creative & Media</a>
-                    <a href="/solutions/commerce">Commerce & Procurement</a>
-                    <a href="/solutions/operational">Operational Support</a>
-                </div>
+            <button
+                type="button"
+                class="flex items-center gap-1 text-sm text-white transition hover:text-[#ff4f81]"
+            >
+                Solutions
+                <span class="text-xs">⌄</span>
+            </button>
+
+            <div class="invisible absolute left-0 top-full mt-3 w-56 rounded-lg border border-[#2a2a2a] bg-[#1a1a1a] p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+
+                <a href="/solutions/digital"
+                   class="block rounded px-3 py-2 text-sm text-white hover:bg-[#2a2a2a] hover:text-[#ff4f81]">
+                    Digital & Software
+                </a>
+
+                <a href="/solutions/business"
+                   class="block rounded px-3 py-2 text-sm text-white hover:bg-[#2a2a2a] hover:text-[#ff4f81]">
+                    Business Support
+                </a>
+
+                <a href="/solutions/creative"
+                   class="block rounded px-3 py-2 text-sm text-white hover:bg-[#2a2a2a] hover:text-[#ff4f81]">
+                    Creative & Media
+                </a>
+
+                <a href="/solutions/commerce"
+                   class="block rounded px-3 py-2 text-sm text-white hover:bg-[#2a2a2a] hover:text-[#ff4f81]">
+                    Commerce & Procurement
+                </a>
+
+                <a href="/solutions/operational"
+                   class="block rounded px-3 py-2 text-sm text-white hover:bg-[#2a2a2a] hover:text-[#ff4f81]">
+                    Operational Support
+                </a>
+
             </div>
 
-            <a href="/portfolio" class="nav-link">Portfolio</a>
-            <a href="/insights" class="nav-link">Insights</a>
-            <a href="/download" class="nav-link">Download</a>
-
-            <a href="/contact" class="nav-button">
-                Contact
-            </a>
         </div>
 
-        <!-- Mobile Button -->
-        <button class="mobile-menu-button" id="mobileMenuButton">
-            ☰
-        </button>
+        <a href="/#portfolio" class="text-sm text-white transition hover:text-[#ff4f81]">
+            Portfolio
+        </a>
+
+        <a href="/insights" class="text-sm text-white transition hover:text-[#ff4f81]">
+            Insights
+        </a>
+
+        <a href="/download" class="text-sm text-white transition hover:text-[#ff4f81]">
+            Download
+        </a>
+
+        <a
+            href="/contact"
+            class="rounded-full bg-[#e40046] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#ff4f81]"
+        >
+            Contact
+        </a>
 
     </div>
-</nav>
 
-    <!-- =========================
-         HERO
-    ========================== -->
 
-    <section
-        class="hero"
-        id="home"
+    <!-- MOBILE BUTTON -->
+    <button
+        id="mobileMenuButton"
+        type="button"
+        class="text-2xl text-white md:hidden"
+        aria-label="Buka menu"
+        aria-expanded="false"
     >
+        ☰
+    </button>
 
-        <!-- Threads Background -->
-
-        <div
-            class="threads-background"
-            id="threads-background"
-        ></div>
+</div>
 
 
-        <!-- Hero Content -->
+<!-- MOBILE MENU -->
+<div
+    id="mobileMenu"
+    class="hidden border-t border-white/10 bg-[#111111] px-6 py-5 md:hidden"
+>
 
-        <div class="hero-content">
+    <div class="flex flex-col gap-5">
 
-            <p class="hero-subtitle">
-                PT BRAMAX TEKNOLOGI INDONESIA
-            </p>
+        <a href="/" class="text-white transition hover:text-[#ff4f81]">
+            Home
+        </a>
 
-            <h1>
-                Solusi Teknologi
-                untuk Masa Depan
-            </h1>
+        <a href="/#about" class="text-white transition hover:text-[#ff4f81]">
+            About
+        </a>
 
-            <p class="hero-description">
-                Menghadirkan solusi teknologi yang inovatif
-                untuk mendukung perkembangan bisnis di era digital.
-            </p>
+        <a href="/#services" class="text-white transition hover:text-[#ff4f81]">
+            Solutions
+        </a>
 
-            <a
-                href="#about"
-                class="hero-button"
-            >
-                Pelajari Selengkapnya
-            </a>
+        <a href="/#portfolio" class="text-white transition hover:text-[#ff4f81]">
+            Portfolio
+        </a>
 
-        </div>
+        <a href="/insights" class="text-[#ff4f81] transition hover:text-white">
+            Insights
+        </a>
 
-    </section>
+        <a href="/download" class="text-white transition hover:text-[#ff4f81]">
+            Download
+        </a>
 
-</body>
+        <a href="/contact" class="text-white transition hover:text-[#ff4f81]">
+            Contact
+        </a>
 
-</html>
+    </div>
+
+</div>
+```
+
+</nav>
