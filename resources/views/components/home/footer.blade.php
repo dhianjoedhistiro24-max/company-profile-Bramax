@@ -1,176 +1,214 @@
-<footer class="bg-[#0b0b0b] px-[7%] pt-[80px] text-white">
+<footer class="bg-[#262626] px-6 pt-[35px] text-white sm:px-8">
 
+    @php
+        $footerSolutions = \App\Models\Solution::where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+    @endphp
 
-<div class="mx-auto grid max-w-[1200px] grid-cols-1 gap-10 pb-[60px] sm:grid-cols-2 lg:grid-cols-4">
+    <div class="mx-auto grid max-w-[1000px] grid-cols-1 gap-6 pb-[30px] sm:grid-cols-2 lg:grid-cols-4">
 
-    <!-- COMPANY -->
-    <div>
+        {{-- COMPANY --}}
+        <div>
 
-        <a
-            href="{{ route('home') }}"
-            class="bg-gradient-to-r from-[#e91e63] to-[#ff3d71] bg-clip-text text-2xl font-extrabold tracking-[-0.5px] text-transparent"
-        >
-            BRAMAX
-        </a>
+            <a
+                href="{{ route('home') }}"
+                class="text-2xl font-extrabold tracking-[-0.5px] text-[#D90000]"
+            >
+                {{ $setting?->site_name ?? 'BRAMAX' }}
+            </a>
 
-        <p class="mt-5 text-sm leading-relaxed text-[#a0a0a0]">
-            PT Bramax Teknologi Indonesia adalah mitra terpercaya dalam
-            menghadirkan inovasi solusi digital, sistem keamanan,
-            dan infrastruktur IoT terdepan.
-        </p>
-
-    </div>
-
-
-    <!-- MENU UTAMA -->
-    <div>
-
-        <h4 class="mb-5 text-base font-semibold text-white">
-            Menu Utama
-        </h4>
-
-        <ul class="space-y-3">
-
-            <li>
-                <a
-                    href="{{ route('home') }}"
-                    class="text-sm text-[#a0a0a0] transition hover:text-[#ff4f81]"
-                >
-                    Home
-                </a>
-            </li>
-
-            <li>
-                <a
-                    href="{{ route('home') }}#about"
-                    class="text-sm text-[#a0a0a0] transition hover:text-[#ff4f81]"
-                >
-                    About Us
-                </a>
-            </li>
-
-            <li>
-                <a
-                    href="{{ route('home') }}#services"
-                    class="text-sm text-[#a0a0a0] transition hover:text-[#ff4f81]"
-                >
-                    Solutions
-                </a>
-            </li>
-
-            <li>
-                <a
-                    href="{{ route('home') }}#portfolio"
-                    class="text-sm text-[#a0a0a0] transition hover:text-[#ff4f81]"
-                >
-                    Portfolio
-                </a>
-            </li>
-
-            <li>
-                <a
-                    href="{{ route('insights') }}"
-                    class="text-sm text-[#a0a0a0] transition hover:text-[#ff4f81]"
-                >
-                    Insights
-                </a>
-            </li>
-
-        </ul>
-
-    </div>
-
-
-    <!-- SOLUTIONS -->
-    <div>
-
-        <h4 class="mb-5 text-base font-semibold text-white">
-            Solusi & Layanan
-        </h4>
-
-        <ul class="space-y-3">
-
-            <li>
-                <a
-                    href="/solutions/digital"
-                    class="text-sm text-[#a0a0a0] transition hover:text-[#ff4f81]"
-                >
-                    Digital & Software
-                </a>
-            </li>
-
-            <li>
-                <a
-                    href="/solutions/business"
-                    class="text-sm text-[#a0a0a0] transition hover:text-[#ff4f81]"
-                >
-                    Business Support
-                </a>
-            </li>
-
-            <li>
-                <a
-                    href="/solutions/creative"
-                    class="text-sm text-[#a0a0a0] transition hover:text-[#ff4f81]"
-                >
-                    Creative & Media
-                </a>
-            </li>
-
-            <li>
-                <a
-                    href="/solutions/operational"
-                    class="text-sm text-[#a0a0a0] transition hover:text-[#ff4f81]"
-                >
-                    Operational Support
-                </a>
-            </li>
-
-        </ul>
-
-    </div>
-
-
-    <!-- CONTACT -->
-    <div>
-
-        <h4 class="mb-5 text-base font-semibold text-white">
-            Kontak Kami
-        </h4>
-
-        <div class="space-y-3 text-sm text-[#a0a0a0]">
-
-            <p>
-                Email:
-                bramaxtech@gmail.com
+            <p class="mt-4 text-sm leading-relaxed text-[#D1D1D1]">
+                {{ $setting?->site_name ?? 'PT Bramax Teknologi Indonesia' }}
+                adalah mitra terpercaya dalam menghadirkan solusi
+                teknologi dan bisnis untuk mendukung pertumbuhan.
             </p>
 
-            <p>
-                Telepon:
-                081332689818
-            </p>
+        </div>
 
-            <p class="leading-relaxed">
-                Jl. Soekarno Hatta No. 36,
-                Madiun
-            </p>
+
+        {{-- MENU UTAMA --}}
+        <div>
+
+            <h4 class="mb-4 text-base font-semibold text-white">
+                Menu Utama
+            </h4>
+
+            <ul class="space-y-2">
+
+                <li>
+                    <a
+                        href="{{ route('home') }}"
+                        class="text-sm text-[#B5B5B5] transition hover:text-[#D90000]"
+                    >
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="{{ route('home') }}#about"
+                        class="text-sm text-[#B5B5B5] transition hover:text-[#D90000]"
+                    >
+                        About Us
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="{{ route('home') }}#services"
+                        class="text-sm text-[#B5B5B5] transition hover:text-[#D90000]"
+                    >
+                        Solutions
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="{{ route('home') }}#portfolio"
+                        class="text-sm text-[#B5B5B5] transition hover:text-[#D90000]"
+                    >
+                        Portfolio
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="{{ route('insights') }}"
+                        class="text-sm text-[#B5B5B5] transition hover:text-[#D90000]"
+                    >
+                        Insights
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        {{-- SOLUTIONS --}}
+        <div>
+
+            <h4 class="mb-4 text-base font-semibold text-white">
+                Solusi & Layanan
+            </h4>
+
+            <ul class="space-y-2">
+
+                @forelse($footerSolutions as $solution)
+
+                    <li>
+                        <a
+                            href="{{ route('solutions.show', $solution->slug) }}"
+                            class="text-sm text-[#B5B5B5] transition hover:text-[#D90000]"
+                        >
+                            {{ $solution->name }}
+                        </a>
+                    </li>
+
+                @empty
+
+                    <li>
+                        <span class="text-sm text-[#999999]">
+                            Belum ada Solution
+                        </span>
+                    </li>
+
+                @endforelse
+
+            </ul>
+
+        </div>
+
+
+        {{-- CONTACT --}}
+        <div>
+
+            <h4 class="mb-4 text-base font-semibold text-white">
+                Kontak Kami
+            </h4>
+
+            <div class="space-y-2 text-sm text-[#B5B5B5]">
+
+                {{-- Email --}}
+                @if($setting?->email)
+
+                    <p>
+                        Email:
+
+                        <a
+                            href="mailto:{{ $setting->email }}"
+                            class="transition hover:text-[#D90000]"
+                        >
+                            {{ $setting->email }}
+                        </a>
+                    </p>
+
+                @endif
+
+
+                {{-- Phone --}}
+                @if($setting?->phone)
+
+                    <p>
+                        Telepon:
+
+                        <a
+                            href="tel:{{ $setting->phone }}"
+                            class="transition hover:text-[#D90000]"
+                        >
+                            {{ $setting->phone }}
+                        </a>
+                    </p>
+
+                @endif
+
+
+                {{-- WhatsApp --}}
+                @if($setting?->whatsapp)
+
+                    <p>
+                        WhatsApp:
+
+                        <a
+                            href="https://wa.me/{{ preg_replace('/\D/', '', $setting->whatsapp) }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="transition hover:text-[#D90000]"
+                        >
+                            {{ $setting->whatsapp }}
+                        </a>
+                    </p>
+
+                @endif
+
+
+                {{-- Address --}}
+                @if($setting?->address)
+
+                    <p class="leading-relaxed">
+                        {{ $setting->address }}
+                    </p>
+
+                @endif
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
 
+    {{-- FOOTER BOTTOM --}}
+    <div class="border-t border-white/10 py-4 text-center">
 
-<!-- FOOTER BOTTOM -->
-<div class="border-t border-white/10 py-6 text-center">
+        <p class="text-sm text-[#999999]">
+            © {{ date('Y') }}
+            {{ $setting?->site_name ?? 'PT Bramax Teknologi Indonesia' }}.
+            All rights reserved.
+        </p>
 
-    <p class="text-sm text-[#777777]">
-        © 2026 PT Bramax Teknologi Indonesia.
-        All rights reserved.
-    </p>
-
-</div>
-
+    </div>
+    
 
 </footer>

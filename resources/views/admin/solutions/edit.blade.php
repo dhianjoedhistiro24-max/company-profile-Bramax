@@ -1,4 +1,3 @@
-
 @extends('layouts.admin')
 
 @section('content')
@@ -11,13 +10,11 @@
         <div class="mb-10">
 
             <div class="flex items-center gap-3 mb-4">
-
-                <div class="w-10 h-1 rounded-full bg-gradient-to-r from-red-600 to-pink-500"></div>
+                <div class="w-10 h-1 rounded-full bg-red-600"></div>
 
                 <span class="text-sm font-semibold uppercase tracking-[0.2em] text-red-600">
                     Admin Panel
                 </span>
-
             </div>
 
             <h1 class="text-4xl font-bold text-gray-900">
@@ -25,16 +22,16 @@
             </h1>
 
             <p class="mt-3 text-gray-600">
-                Perbarui informasi solution yang sudah tersedia.
+                Perbarui informasi solution yang sudah ada.
             </p>
 
         </div>
 
 
-        {{-- Form --}}
+        {{-- Form Card --}}
         <div class="relative">
 
-            <div class="absolute -top-1 left-8 right-8 h-1 rounded-full bg-gradient-to-r from-red-600 via-pink-500 to-red-400"></div>
+            <div class="absolute -top-1 left-8 right-8 h-1 rounded-full bg-red-600"></div>
 
             <form
                 action="{{ route('admin.solutions.update', $solution) }}"
@@ -59,7 +56,6 @@
                         </div>
 
                         <div>
-
                             <h2 class="text-xl font-bold text-gray-900">
                                 Basic Information
                             </h2>
@@ -67,7 +63,6 @@
                             <p class="text-sm text-gray-500">
                                 Informasi utama solution.
                             </p>
-
                         </div>
 
                     </div>
@@ -113,7 +108,7 @@
                         >
 
                         <p class="mt-2 text-xs text-gray-500">
-                            Slug digunakan sebagai alamat URL solution.
+                            Kosongkan jika ingin dibuat otomatis dari Title.
                         </p>
 
                         @error('slug')
@@ -171,7 +166,6 @@
                         </div>
 
                         <div>
-
                             <h2 class="text-xl font-bold text-gray-900">
                                 Visual
                             </h2>
@@ -179,7 +173,6 @@
                             <p class="text-sm text-gray-500">
                                 Icon dan gambar solution.
                             </p>
-
                         </div>
 
                     </div>
@@ -192,12 +185,90 @@
                             Icon
                         </label>
 
-                        <input
-                            type="text"
+                        <select
                             name="icon"
-                            value="{{ old('icon', $solution->icon) }}"
-                            class="w-full bg-white text-gray-900 placeholder-gray-400 border border-gray-300 rounded-xl px-4 py-3.5 focus:border-red-500 focus:ring-2 focus:ring-red-100 focus:outline-none transition"
+                            class="w-full bg-white text-gray-900 border border-gray-300 rounded-xl px-4 py-3.5 focus:border-red-500 focus:ring-2 focus:ring-red-100 focus:outline-none transition"
                         >
+
+                            <option value="">
+                                Pilih Icon
+                            </option>
+
+                            <option value="code" {{ old('icon', $solution->icon) == 'code' ? 'selected' : '' }}>
+                                💻 Code / Digital
+                            </option>
+
+                            <option value="monitor" {{ old('icon', $solution->icon) == 'monitor' ? 'selected' : '' }}>
+                                🖥️ Monitor
+                            </option>
+
+                            <option value="smartphone" {{ old('icon', $solution->icon) == 'smartphone' ? 'selected' : '' }}>
+                                📱 Smartphone
+                            </option>
+
+                            <option value="globe" {{ old('icon', $solution->icon) == 'globe' ? 'selected' : '' }}>
+                                🌐 Globe / Internet
+                            </option>
+
+                            <option value="shopping-cart" {{ old('icon', $solution->icon) == 'shopping-cart' ? 'selected' : '' }}>
+                                🛒 Shopping
+                            </option>
+
+                            <option value="briefcase" {{ old('icon', $solution->icon) == 'briefcase' ? 'selected' : '' }}>
+                                💼 Business
+                            </option>
+
+                            <option value="users" {{ old('icon', $solution->icon) == 'users' ? 'selected' : '' }}>
+                                👥 Users
+                            </option>
+
+                            <option value="settings" {{ old('icon', $solution->icon) == 'settings' ? 'selected' : '' }}>
+                                ⚙️ Settings
+                            </option>
+
+                            <option value="database" {{ old('icon', $solution->icon) == 'database' ? 'selected' : '' }}>
+                                🗄️ Database
+                            </option>
+
+                            <option value="cloud" {{ old('icon', $solution->icon) == 'cloud' ? 'selected' : '' }}>
+                                ☁️ Cloud
+                            </option>
+
+                            <option value="palette" {{ old('icon', $solution->icon) == 'palette' ? 'selected' : '' }}>
+                                🎨 Creative
+                            </option>
+
+                            <option value="megaphone" {{ old('icon', $solution->icon) == 'megaphone' ? 'selected' : '' }}>
+                                📢 Marketing
+                            </option>
+
+                            <option value="chart" {{ old('icon', $solution->icon) == 'chart' ? 'selected' : '' }}>
+                                📊 Analytics
+                            </option>
+
+                            <option value="shield" {{ old('icon', $solution->icon) == 'shield' ? 'selected' : '' }}>
+                                🛡️ Security
+                            </option>
+
+                            <option value="lightbulb" {{ old('icon', $solution->icon) == 'lightbulb' ? 'selected' : '' }}>
+                                💡 Innovation
+                            </option>
+
+                            <option value="rocket" {{ old('icon', $solution->icon) == 'rocket' ? 'selected' : '' }}>
+                                🚀 Growth
+                            </option>
+
+                        </select>
+
+                        <p class="mt-2 text-xs text-gray-500">
+                            Pilih icon yang sesuai dengan solution.
+                        </p>
+
+                        @error('icon')
+                            <p class="mt-2 text-sm text-red-600">
+                                {{ $message }}
+                            </p>
+                        @enderror
 
                     </div>
 
@@ -222,11 +293,11 @@
                     @endif
 
 
-                    {{-- New Image --}}
+                    {{-- Image --}}
                     <div>
 
                         <label class="block mb-2 text-sm font-semibold text-gray-900">
-                            {{ $solution->image ? 'Change Image' : 'Image' }}
+                            Replace Image
                         </label>
 
                         <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 hover:border-red-400 transition">
@@ -267,7 +338,6 @@
                         </div>
 
                         <div>
-
                             <h2 class="text-xl font-bold text-gray-900">
                                 Features
                             </h2>
@@ -275,7 +345,6 @@
                             <p class="text-sm text-gray-500">
                                 Fitur yang dimiliki solution.
                             </p>
-
                         </div>
 
                     </div>
@@ -288,6 +357,7 @@
                     <textarea
                         name="features"
                         rows="6"
+                        placeholder="Digital Strategy&#10;Business Process Automation&#10;System Integration&#10;Cloud Integration"
                         class="w-full bg-white text-gray-900 placeholder-gray-400 border border-gray-300 rounded-xl px-4 py-3.5 focus:border-red-500 focus:ring-2 focus:ring-red-100 focus:outline-none transition resize-y"
                     >{{ old('features', is_array($solution->features) ? implode("\n", $solution->features) : $solution->features) }}</textarea>
 
@@ -310,7 +380,6 @@
                         </div>
 
                         <div>
-
                             <h2 class="text-xl font-bold text-gray-900">
                                 Settings
                             </h2>
@@ -318,7 +387,6 @@
                             <p class="text-sm text-gray-500">
                                 Pengaturan tampilan solution.
                             </p>
-
                         </div>
 
                     </div>
@@ -334,7 +402,7 @@
                         <input
                             type="number"
                             name="sort_order"
-                            value="{{ old('sort_order', $solution->sort_order) }}"
+                            value="{{ old('sort_order', $solution->sort_order ?? 0) }}"
                             min="0"
                             class="w-full bg-white text-gray-900 border border-gray-300 rounded-xl px-4 py-3.5 focus:border-red-500 focus:ring-2 focus:ring-red-100 focus:outline-none transition"
                         >
@@ -394,7 +462,7 @@
 
                     <button
                         type="submit"
-                        class="px-7 py-3.5 bg-gradient-to-r from-red-600 to-pink-600 text-white rounded-xl font-semibold shadow-md hover:shadow-lg hover:from-red-700 hover:to-pink-700 transition"
+                        class="px-7 py-3.5 bg-red-600 text-white rounded-xl font-semibold shadow-md hover:bg-red-700 transition"
                     >
                         Simpan Perubahan
                     </button>
@@ -410,4 +478,3 @@
 </div>
 
 @endsection
-```

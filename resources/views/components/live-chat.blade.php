@@ -12,12 +12,12 @@
     <button
         type="button"
         @click="open = !open"
-        class="flex items-center gap-3 rounded-full bg-[#D90000] px-6 py-4 text-white font-semibold shadow-lg hover:bg-[#B00000] transition"
+        class="flex items-center gap-3 rounded-full bg-[#D90000] px-6 py-4 font-semibold text-white shadow-lg transition hover:bg-[#B00000]"
     >
         <span class="text-xl">💬</span>
 
         <span>
-            Chat with BRAMAX
+            Chat with {{ $setting?->site_name ?? 'BRAMAX' }}
         </span>
     </button>
 
@@ -33,7 +33,7 @@
         <div class="bg-[#D90000] px-6 py-5 text-white">
 
             <p class="text-sm font-medium text-white/80">
-                BRAMAX
+                {{ $setting?->site_name ?? 'BRAMAX' }}
             </p>
 
             <h3 class="mt-1 text-xl font-bold">
@@ -47,16 +47,13 @@
         <div class="p-6">
 
             @if (session('chat_success'))
-
                 <div class="mb-5 rounded-xl border border-pink-200 bg-pink-50 p-4 text-sm text-black">
                     {{ session('chat_success') }}
                 </div>
-
             @endif
 
 
             @if ($errors->any())
-
                 <div class="mb-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-black">
 
                     <p class="font-semibold text-[#D90000]">
@@ -70,10 +67,77 @@
                     </ul>
 
                 </div>
+            @endif
+
+
+            {{-- Contact Information --}}
+            @if($setting?->whatsapp || $setting?->phone || $setting?->email)
+
+                <div class="mb-5 space-y-2 rounded-xl bg-gray-50 p-4">
+
+                    <p class="mb-3 text-sm font-semibold text-black">
+                        Hubungi Kami
+                    </p>
+
+
+                    {{-- WhatsApp --}}
+                    @if($setting?->whatsapp)
+
+                        <a
+                            href="https://wa.me/{{ preg_replace('/\D/', '', $setting->whatsapp) }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex items-center gap-3 text-sm text-gray-600 transition hover:text-[#D90000]"
+                        >
+                            <span>💬</span>
+
+                            <span>
+                                {{ $setting->whatsapp }}
+                            </span>
+                        </a>
+
+                    @endif
+
+
+                    {{-- Phone --}}
+                    @if($setting?->phone)
+
+                        <a
+                            href="tel:{{ $setting->phone }}"
+                            class="flex items-center gap-3 text-sm text-gray-600 transition hover:text-[#D90000]"
+                        >
+                            <span>📞</span>
+
+                            <span>
+                                {{ $setting->phone }}
+                            </span>
+                        </a>
+
+                    @endif
+
+
+                    {{-- Email --}}
+                    @if($setting?->email)
+
+                        <a
+                            href="mailto:{{ $setting->email }}"
+                            class="flex items-center gap-3 text-sm text-gray-600 transition hover:text-[#D90000]"
+                        >
+                            <span>✉️</span>
+
+                            <span>
+                                {{ $setting->email }}
+                            </span>
+                        </a>
+
+                    @endif
+
+                </div>
 
             @endif
 
 
+            {{-- Chat Form --}}
             <form
                 action="{{ route('contact.message') }}"
                 method="POST"
@@ -154,7 +218,7 @@
                 {{-- Submit --}}
                 <button
                     type="submit"
-                    class="w-full rounded-xl bg-[#D90000] px-5 py-3 font-semibold text-white hover:bg-[#B00000] transition"
+                    class="w-full rounded-xl bg-[#D90000] px-5 py-3 font-semibold text-white transition hover:bg-[#B00000]"
                 >
                     Kirim Pesan
                 </button>

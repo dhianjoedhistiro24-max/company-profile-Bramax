@@ -219,47 +219,15 @@
     </section>
 
 
- {{-- CTA --}}
-<section class="py-14 bg-red-700 text-white relative overflow-hidden shadow-lg">
-    <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-red-800 rounded-full blur-2xl opacity-50 pointer-events-none"></div>
 
-    <div class="max-w-2xl mx-auto px-6 text-center relative z-10">
 
-        <span class="inline-block px-3 py-1 rounded-full bg-red-800/80 text-[11px] font-bold uppercase tracking-[0.18em] text-white mb-3">
-            Start Your Project
-        </span>
-
-        <h2 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-            Butuh Solution Ini untuk Bisnis Anda?
-        </h2>
-
-        <p class="mt-3 max-w-lg mx-auto text-xs md:text-sm text-white/90 leading-relaxed font-normal">
-            Hubungi tim BRAMAX untuk mendiskusikan kebutuhan
-            dan solusi yang sesuai dengan bisnis Anda.
-        </p>
-
-        <div class="mt-6 flex flex-wrap justify-center gap-3">
-
-            <a
-                href="#contact"
-                class="inline-flex items-center gap-2 px-6 py-3 bg-white text-red-700 rounded-xl font-bold text-xs hover:bg-pink-50 shadow-md hover:shadow transition-all duration-200"
-            >
-                Konsultasi Sekarang
-                <span>→</span>
-            </a>
-
-            <a
-                href="{{ route('solutions.digital') }}"
-                class="inline-flex items-center gap-2 px-6 py-3 border border-white/80 text-white rounded-xl font-bold text-xs hover:bg-white hover:text-red-700 transition-all duration-200"
-            >
-                Lihat Semua Solution
-            </a>
+        
 
         </div>
 
     </div>
 
 </section>
-
+ <x-cta />
 </div>
 @endsection

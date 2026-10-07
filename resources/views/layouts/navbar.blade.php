@@ -1,245 +1,282 @@
+
+@php
+    $solutions = \App\Models\Solution::where('is_active', true)
+        ->orderBy('sort_order')
+        ->get();
+@endphp
+
 <nav
     id="navbar"
-    class="fixed left-0 top-0 z-50 w-full border-b border-gray-200/80 bg-white/90 backdrop-blur-lg transition-transform duration-300"
+    class="fixed left-0 top-0 z-50 w-full border-b border-gray-200 bg-white transition-transform duration-300 ease-in-out"
 >
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-    <div class="mx-auto flex h-[76px] max-w-[1200px] items-center justify-between px-6">
+        {{-- =========================
+             NAVBAR UTAMA
+        ========================== --}}
+        <div class="flex h-[72px] items-center justify-between">
 
-        <!-- LOGO -->
-        <a
-            href="{{ route('home') }}"
-            class="bg-gradient-to-r from-[#D90000] to-[#e91e63] bg-clip-text text-2xl font-extrabold tracking-[-0.5px] text-transparent"
-        >
-            BRAMAX
-        </a>
-
-
-        <!-- DESKTOP MENU -->
-        <div class="hidden items-center gap-2 md:flex">
-
+            {{-- LOGO --}}
             <a
                 href="{{ route('home') }}"
-                class="px-3.5 py-2.5 text-[15px] font-medium text-[#252525] transition hover:text-[#D90000]"
+                class="shrink-0 text-xl font-extrabold tracking-tight text-[#D90000] sm:text-2xl"
             >
-                Home
-            </a>
-
-            <a
-                href="{{ route('home') }}#about"
-                class="px-3.5 py-2.5 text-[15px] font-medium text-[#252525] transition hover:text-[#D90000]"
-            >
-                About
+                {{ $setting?->site_name ?? 'BRAMAX' }}
             </a>
 
 
-            <!-- SOLUTIONS -->
-            <div class="group relative">
+            {{-- =========================
+                 DESKTOP MENU
+            ========================== --}}
+            <div class="hidden items-center gap-1 lg:flex">
 
-                <button
-                    type="button"
-                    class="flex items-center gap-1.5 border-0 bg-transparent px-3.5 py-2.5 text-[15px] font-medium text-[#252525] transition hover:text-[#D90000]"
+                {{-- HOME --}}
+                <a
+                    href="{{ route('home') }}"
+                    class="rounded-lg px-4 py-2.5 text-sm font-medium text-[#252525] transition hover:text-[#D90000]"
+                >
+                    Home
+                </a>
+
+
+                {{-- ABOUT --}}
+                <a
+                    href="{{ route('home') }}#about"
+                    class="rounded-lg px-4 py-2.5 text-sm font-medium text-[#252525] transition hover:text-[#D90000]"
+                >
+                    About
+                </a>
+
+
+            
+                {{-- SOLUTIONS --}}
+                <a
+                    href="{{ route('home') }}#solutions"
+                    class="rounded-lg px-4 py-2.5 text-sm font-medium text-[#252525] transition hover:text-[#D90000]"
                 >
                     Solutions
-                    <span class="text-xs">⌄</span>
-                </button>
+                </a>
 
 
-                <div
-                    class="invisible absolute left-0 top-[calc(100%+10px)] w-[240px] translate-y-[-8px] rounded-xl border border-gray-200 bg-white p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100"
+
+                {{-- PORTFOLIO --}}
+                <a
+                    href="{{ route('home') }}#portfolio"
+                    class="rounded-lg px-4 py-2.5 text-sm font-medium text-[#252525] transition hover:text-[#D90000]"
                 >
+                    Portfolio
+                </a>
+
+
+                {{-- INSIGHTS --}}
+                <a
+                    href="{{ route('insights') }}"
+                    class="rounded-lg px-4 py-2.5 text-sm font-medium text-[#252525] transition hover:text-[#D90000]"
+                >
+                    Insights
+                </a>
+
+
+                {{-- DOWNLOAD --}}
+                <a
+                    href="/download"
+                    class="rounded-lg px-4 py-2.5 text-sm font-medium text-[#252525] transition hover:text-[#D90000]"
+                >
+                    Download
+                </a>
+
+
+                {{-- CONTACT --}}
+                <a
+                    href="/contact"
+                    class="ml-2 rounded-full bg-[#D90000] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#b80000]"
+                >
+                    Contact
+                </a>
+
+            </div>
+
+
+            {{-- =========================
+                 MOBILE BUTTON
+            ========================== --}}
+            <button
+                id="mobileMenuButton"
+                type="button"
+                class="flex h-11 w-11 items-center justify-center rounded-lg border border-gray-200 bg-white text-[#252525] transition hover:bg-gray-100 lg:hidden"
+                aria-label="Buka menu"
+                aria-expanded="false"
+            >
+
+                {{-- HAMBURGER --}}
+                <svg
+                    id="mobileMenuOpenIcon"
+                    class="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"
+                    />
+                </svg>
+
+
+                {{-- CLOSE --}}
+                <svg
+                    id="mobileMenuCloseIcon"
+                    class="hidden h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                    />
+                </svg>
+
+            </button>
+
+        </div>
+
+
+        {{-- =========================
+             MOBILE MENU
+        ========================== --}}
+        <div
+            id="mobileMenu"
+            class="hidden border-t border-gray-200 bg-white lg:hidden"
+        >
+
+            <div class="max-h-[calc(100vh-72px)] overflow-y-auto py-2">
+
+                {{-- HOME --}}
+                <a
+                    href="{{ route('home') }}"
+                    class="block border-b border-gray-100 px-4 py-4 text-sm font-medium text-[#252525] transition hover:bg-gray-50 hover:text-[#D90000]"
+                >
+                    Home
+                </a>
+
+
+                {{-- ABOUT --}}
+                <a
+                    href="{{ route('home') }}#about"
+                    class="block border-b border-gray-100 px-4 py-4 text-sm font-medium text-[#252525] transition hover:bg-gray-50 hover:text-[#D90000]"
+                >
+                    About
+                </a>
+
+
+                {{-- =========================
+                     MOBILE SOLUTIONS
+                ========================== --}}
+                <div class="border-b border-gray-100">
+
+                    <button
+                        id="mobileSolutionsButton"
+                        type="button"
+                        class="flex w-full items-center justify-between px-4 py-4 text-left text-sm font-medium text-[#252525] transition hover:bg-gray-50"
+                        aria-expanded="false"
+                    >
+
+                        <span>Solutions</span>
+
+                        <svg
+                            id="mobileSolutionsIcon"
+                            class="h-4 w-4 transition-transform duration-200"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"
+                            />
+                        </svg>
+
+                    </button>
+
+
+                    {{-- SOLUTIONS LIST --}}
+                    <div
+                        id="mobileSolutionsMenu"
+                        class="hidden bg-gray-50 px-3 pb-3"
+                    >
+
+                        @forelse($solutions as $solution)
+
+                            <a
+                                href="{{ route('solutions.show', $solution->slug) }}"
+                                class="block rounded-lg px-4 py-3 text-sm font-medium !text-black transition hover:bg-[#fff0f5] hover:!text-[#D90000]"
+                            >
+                                {{ $solution->title }}
+                            </a>
+
+                        @empty
+
+                            <div class="px-4 py-3 text-sm text-gray-500">
+                                Belum ada Solution
+                            </div>
+
+                        @endforelse
+
+                    </div>
+
+                </div>
+
+
+                {{-- PORTFOLIO --}}
+                <a
+                    href="{{ route('home') }}#portfolio"
+                    class="block border-b border-gray-100 px-4 py-4 text-sm font-medium text-[#252525] transition hover:bg-gray-50 hover:text-[#D90000]"
+                >
+                    Portfolio
+                </a>
+
+
+                {{-- INSIGHTS --}}
+                <a
+                    href="{{ route('insights') }}"
+                    class="block border-b border-gray-100 px-4 py-4 text-sm font-medium text-[#252525] transition hover:bg-gray-50 hover:text-[#D90000]"
+                >
+                    Insights
+                </a>
+
+
+                {{-- DOWNLOAD --}}
+                <a
+                    href="/download"
+                    class="block border-b border-gray-100 px-4 py-4 text-sm font-medium text-[#252525] transition hover:bg-gray-50 hover:text-[#D90000]"
+                >
+                    Download
+                </a>
+
+
+                {{-- CONTACT --}}
+                <div class="p-4">
 
                     <a
-                        href="{{ route('solutions.digital') }}"
-                        class="block rounded-lg px-3 py-2.5 text-sm text-[#252525] transition hover:bg-[#fff0f5] hover:text-[#D90000]"
+                        href="/contact"
+                        class="block rounded-full bg-[#D90000] px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#b80000]"
                     >
-                        Digital & Software
-                    </a>
-
-                    <a
-                        href="{{ route('solutions.show', 'business-support') }}"
-                        class="block rounded-lg px-3 py-2.5 text-sm text-[#252525] transition hover:bg-[#fff0f5] hover:text-[#D90000]"
-                    >
-                        Business Support
-                    </a>
-
-                    <a
-                       href="{{ route('business-categories.show', 'kreatif-media-desain-promosi') }}"   
-                        class="block rounded-lg px-3 py-2.5 text-sm text-[#252525] transition hover:bg-[#fff0f5] hover:text-[#D90000]"
-                    >
-                        Creative & Media
-                    </a>
-
-                    <a
-                        href="/solutions/commerce"
-                        class="block rounded-lg px-3 py-2.5 text-sm text-[#252525] transition hover:bg-[#fff0f5] hover:text-[#D90000]"
-                    >
-                        Commerce & Procurement
-                    </a>
-
-                    <a
-                        href="/solutions/operational"
-                        class="block rounded-lg px-3 py-2.5 text-sm text-[#252525] transition hover:bg-[#fff0f5] hover:text-[#D90000]"
-                    >
-                        Operational Support
+                        Contact
                     </a>
 
                 </div>
 
             </div>
 
-
-            <a
-                href="{{ route('home') }}#portfolio"
-                class="px-3.5 py-2.5 text-[15px] font-medium text-[#252525] transition hover:text-[#D90000]"
-            >
-                Portfolio
-            </a>
-
-            <a
-                href="{{ route('insights') }}"
-                class="px-3.5 py-2.5 text-[15px] font-medium text-[#252525] transition hover:text-[#D90000]"
-            >
-                Insights
-            </a>
-
-            <a
-                href="/download"
-                class="px-3.5 py-2.5 text-[15px] font-medium text-[#252525] transition hover:text-[#D90000]"
-            >
-                Download
-            </a>
-
-
-            <!-- CONTACT -->
-            <a
-                href="/contact"
-                class="ml-2 rounded-full bg-gradient-to-r from-[#D90000] to-[#e91e63] px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(217,0,0,0.25)]"
-            >
-                Contact
-            </a>
-
-        </div>
-
-
-        <!-- MOBILE BUTTON -->
-        <button
-            id="mobileMenuButton"
-            type="button"
-            class="flex h-10 w-10 items-center justify-center text-2xl text-[#252525] transition hover:text-[#D90000] md:hidden"
-            aria-label="Buka menu"
-            aria-expanded="false"
-        >
-            ☰
-        </button>
-
-    </div>
-
-
-    <!-- MOBILE MENU -->
-    <div
-        id="mobileMenu"
-        class="hidden border-t border-gray-200 bg-white px-6 pb-6 pt-4 shadow-lg md:hidden"
-    >
-
-        <div class="flex flex-col">
-
-            <a
-                href="{{ route('home') }}"
-                class="border-b border-gray-100 py-3 text-sm font-medium text-[#252525] transition hover:text-[#D90000]"
-            >
-                Home
-            </a>
-
-            <a
-                href="{{ route('home') }}#about"
-                class="border-b border-gray-100 py-3 text-sm font-medium text-[#252525] transition hover:text-[#D90000]"
-            >
-                About
-            </a>
-
-
-            <!-- MOBILE SOLUTIONS -->
-            <div class="border-b border-gray-100 py-3">
-
-                <p class="mb-2 text-sm font-medium text-[#252525]">
-                    Solutions
-                </p>
-
-                <div class="flex flex-col gap-2 pl-3">
-
-                    <a
-                        href="{{ route('solutions.digital') }}"
-                        class="text-sm text-gray-500 transition hover:text-[#D90000]"
-                    >
-                        Digital & Software
-                    </a>
-
-                    <a
-                        href="{{ route('solutions.show', 'business-support') }}"
-                        class="text-sm text-gray-500 transition hover:text-[#D90000]"
-                    >
-                        Business Support
-                    </a>
-
-                    <a
-                        href="/solutions/creative"
-                        class="text-sm text-gray-500 transition hover:text-[#D90000]"
-                    >
-                        Creative & Media
-                    </a>
-
-                    <a
-                        href="/solutions/commerce"
-                        class="text-sm text-gray-500 transition hover:text-[#D90000]"
-                    >
-                        Commerce & Procurement
-                    </a>
-
-                    <a
-                        href="/solutions/operational"
-                        class="text-sm text-gray-500 transition hover:text-[#D90000]"
-                    >
-                        Operational Support
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <a
-                href="{{ route('home') }}#portfolio"
-                class="border-b border-gray-100 py-3 text-sm font-medium text-[#252525] transition hover:text-[#D90000]"
-            >
-                Portfolio
-            </a>
-
-            <a
-                href="{{ route('insights') }}"
-                class="border-b border-gray-100 py-3 text-sm font-medium text-[#252525] transition hover:text-[#D90000]"
-            >
-                Insights
-            </a>
-
-            <a
-                href="/download"
-                class="border-b border-gray-100 py-3 text-sm font-medium text-[#252525] transition hover:text-[#D90000]"
-            >
-                Download
-            </a>
-
-
-            <!-- MOBILE CONTACT -->
-            <a
-                href="/contact"
-                class="mt-4 rounded-full bg-gradient-to-r from-[#D90000] to-[#e91e63] px-5 py-3 text-center text-sm font-semibold text-white transition hover:shadow-[0_6px_18px_rgba(217,0,0,0.25)]"
-            >
-                Contact
-            </a>
-
         </div>
 
     </div>
-
 </nav>
 

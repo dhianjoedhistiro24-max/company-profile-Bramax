@@ -136,46 +136,7 @@
 
     </section>
 
-    <section class="py-8 bg-[#B91C1C]">
-
-        <div class="max-w-xl mx-auto px-6 text-center">
-
-            <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-white">
-                Start Your Project
-            </p>
-
-            <h2 class="mt-2 text-xl md:text-2xl font-bold text-white">
-                Butuh Layanan Ini untuk Bisnis Anda?
-            </h2>
-
-            <p class="mt-3 text-xs md:text-sm text-white/90 leading-relaxed">
-                Hubungi tim BRAMAX untuk mendiskusikan kebutuhan
-                dan solusi yang sesuai dengan bisnis Anda.
-            </p>
-
-            <div class="mt-5 flex flex-wrap justify-center gap-2">
-
-                <a
-                    href="#contact"
-                    class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-[#B91C1C] rounded-lg font-semibold text-xs hover:bg-pink-50 transition"
-                >
-                    Konsultasi Sekarang
-                    <span>→</span>
-                </a>
-
-                <a
-                    href="{{ route('business-categories.show', $service->serviceCategory->slug) }}"
-                    class="inline-flex items-center gap-2 px-5 py-2.5 border border-white text-white rounded-lg font-semibold text-xs hover:bg-white hover:text-[#B91C1C] transition"
-                >
-                    Kembali ke Category
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
+       <x-cta />
 </div>
 
 @endsection

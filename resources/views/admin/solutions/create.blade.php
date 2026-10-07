@@ -181,23 +181,97 @@
                     </div>
 
 
-                    {{-- Icon --}}
-                    <div class="mb-6">
+                   {{-- Icon --}}
+<div class="mb-6">
 
-                        <label class="block mb-2 text-sm font-semibold text-gray-900">
-                            Icon
-                        </label>
+    <label class="block mb-2 text-sm font-semibold text-gray-900">
+        Icon
+    </label>
 
-                        <input
-                            type="text"
-                            name="icon"
-                            value="{{ old('icon') }}"
-                            placeholder="Contoh: monitor"
-                            class="w-full bg-white text-gray-900 placeholder-gray-400 border border-gray-300 rounded-xl px-4 py-3.5 focus:border-red-500 focus:ring-2 focus:ring-red-100 focus:outline-none transition"
-                        >
+    <select
+        name="icon"
+        class="w-full bg-white text-gray-900 border border-gray-300 rounded-xl px-4 py-3.5 focus:border-red-500 focus:ring-2 focus:ring-red-100 focus:outline-none transition"
+    >
 
-                    </div>
+        <option value="">Pilih Icon</option>
 
+        <option value="code" {{ old('icon') == 'code' ? 'selected' : '' }}>
+            💻 Code / Digital
+        </option>
+
+        <option value="monitor" {{ old('icon') == 'monitor' ? 'selected' : '' }}>
+            🖥️ Monitor
+        </option>
+
+        <option value="smartphone" {{ old('icon') == 'smartphone' ? 'selected' : '' }}>
+            📱 Smartphone
+        </option>
+
+        <option value="globe" {{ old('icon') == 'globe' ? 'selected' : '' }}>
+            🌐 Globe / Internet
+        </option>
+
+        <option value="shopping-cart" {{ old('icon') == 'shopping-cart' ? 'selected' : '' }}>
+            🛒 Shopping
+        </option>
+
+        <option value="briefcase" {{ old('icon') == 'briefcase' ? 'selected' : '' }}>
+            💼 Business
+        </option>
+
+        <option value="users" {{ old('icon') == 'users' ? 'selected' : '' }}>
+            👥 Users
+        </option>
+
+        <option value="settings" {{ old('icon') == 'settings' ? 'selected' : '' }}>
+            ⚙️ Settings
+        </option>
+
+        <option value="database" {{ old('icon') == 'database' ? 'selected' : '' }}>
+            🗄️ Database
+        </option>
+
+        <option value="cloud" {{ old('icon') == 'cloud' ? 'selected' : '' }}>
+            ☁️ Cloud
+        </option>
+
+        <option value="palette" {{ old('icon') == 'palette' ? 'selected' : '' }}>
+            🎨 Creative
+        </option>
+
+        <option value="megaphone" {{ old('icon') == 'megaphone' ? 'selected' : '' }}>
+            📢 Marketing
+        </option>
+
+        <option value="chart" {{ old('icon') == 'chart' ? 'selected' : '' }}>
+            📊 Analytics
+        </option>
+
+        <option value="shield" {{ old('icon') == 'shield' ? 'selected' : '' }}>
+            🛡️ Security
+        </option>
+
+        <option value="lightbulb" {{ old('icon') == 'lightbulb' ? 'selected' : '' }}>
+            💡 Innovation
+        </option>
+
+        <option value="rocket" {{ old('icon') == 'rocket' ? 'selected' : '' }}>
+            🚀 Growth
+        </option>
+
+    </select>
+
+    <p class="mt-2 text-xs text-gray-500">
+        Pilih icon yang sesuai dengan solution.
+    </p>
+
+    @error('icon')
+        <p class="mt-2 text-sm text-red-600">
+            {{ $message }}
+        </p>
+    @enderror
+
+</div>
 
                     {{-- Image --}}
                     <div>

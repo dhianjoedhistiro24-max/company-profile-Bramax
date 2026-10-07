@@ -10,6 +10,8 @@ class Page extends Model
         'title',
         'slug',
         'content',
+        'vision',
+        'mission',
         'cta',
         'section_order',
         'status',

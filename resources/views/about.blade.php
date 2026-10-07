@@ -4,20 +4,29 @@
 
 <div class="min-h-screen bg-white text-black">
 
-    {{-- Hero --}}
-<section class="border-b border-gray-100">
-    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+{{-- Hero --}}
+<section
+    class="relative min-h-[650px] overflow-hidden border-b border-gray-100 bg-cover bg-center"
+    @if($about->banner)
+        style="background-image: url('{{ asset('storage/' . $about->banner) }}');"
+    @endif
+>
 
-        <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+    {{-- Overlay --}}
+    <div class="absolute inset-0 bg-white/80"></div>
 
-            {{-- Left: Title --}}
-            <div>
+    {{-- Content --}}
+    <div class="relative flex min-h-[650px] items-center">
+
+        <div class="mx-auto w-full max-w-6xl px-6">
+
+            <div class="max-w-3xl">
 
                 <p class="mb-5 text-sm font-semibold uppercase tracking-[0.25em] text-[#D90000]">
                     About BRAMAX
                 </p>
 
-                <h1 class="text-4xl font-bold leading-tight tracking-tight md:text-6xl">
+                <h1 class="text-4xl font-bold leading-tight tracking-tight text-black md:text-6xl">
                     {{ $about->title }}
                 </h1>
 
@@ -25,218 +34,218 @@
 
             </div>
 
-
-            {{-- Right: Banner --}}
-            @if($about->banner)
-                <div>
-                    <div class="overflow-hidden rounded-3xl border border-gray-200 bg-gray-100 shadow-[0_15px_50px_rgba(0,0,0,0.08)]">
-
-                        <img
-                            src="{{ asset('storage/' . $about->banner) }}"
-                            alt="{{ $about->title }}"
-                            class="h-[320px] w-full object-cover md:h-[400px]"
-                        >
-
-                    </div>
-                </div>
-            @endif
-
         </div>
 
     </div>
+
 </section>
-    {{-- Content --}}
-    <section class="py-20 md:py-28">
-        <div class="mx-auto max-w-6xl px-6">
 
-            <div class="grid gap-14 md:grid-cols-[1fr_1.5fr]">
+{{-- Content --}}
+<section class="py-20 md:py-28">
 
-                {{-- Label --}}
-                <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-gray-400">
-                        Who We Are
-                    </p>
+    <div class="mx-auto max-w-6xl px-6">
 
-                    <h2 class="mt-4 text-3xl font-bold leading-tight md:text-4xl">
-                        Technology-enabled
-                        <span class="text-[#D90000]">
-                            Business Partner
-                        </span>
-                    </h2>
-                </div>
+        <div class="grid gap-14 md:grid-cols-[1fr_1.5fr]">
 
+            {{-- Label --}}
+            <div>
 
-                {{-- Description --}}
-                <div class="max-w-3xl">
-
-                    <div class="whitespace-pre-line text-lg leading-8 text-gray-600">
-                        {{ $about->content }}
-                    </div>
-
-                    @if($about->cta)
-                        <div class="mt-10">
-                            <a
-                                href="{{ route('home') }}#contact"
-                                class="inline-flex items-center rounded-full bg-[#D90000] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#b80000] hover:shadow-lg"
-                            >
-                                {{ $about->cta }}
-
-                                <span class="ml-2">
-                                    →
-                                </span>
-                            </a>
-                        </div>
-                    @endif
-
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    {{-- Values --}}
-    <section class="border-t border-gray-100 bg-gray-50 py-20 md:py-24">
-        <div class="mx-auto max-w-6xl px-6">
-
-            <div class="mb-12 max-w-2xl">
-
-                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#D90000]">
-                    Our Approach
+                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-gray-400">
+                    Who We Are
                 </p>
 
-                <h2 class="mt-3 text-3xl font-bold md:text-4xl">
-                    Solusi yang berorientasi pada kebutuhan bisnis
+                <h2 class="mt-4 text-3xl font-bold leading-tight md:text-4xl">
+                    Technology-enabled
+                    <span class="text-[#D90000]">
+                        Business Partner
+                    </span>
                 </h2>
 
             </div>
 
 
-            <div class="grid gap-6 md:grid-cols-3">
+            {{-- Description --}}
+            <div class="max-w-3xl">
 
-                <div class="rounded-2xl border border-gray-200 bg-white p-7">
-                    <div class="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-[#fff0f0] text-[#D90000]">
-                        01
-                    </div>
-
-                    <h3 class="text-lg font-bold">
-                        Technology
-                    </h3>
-
-                    <p class="mt-3 text-sm leading-6 text-gray-500">
-                        Memanfaatkan teknologi untuk menciptakan solusi yang efektif,
-                        terintegrasi, dan relevan.
-                    </p>
+                <div class="whitespace-pre-line text-lg leading-8 text-gray-600">
+                    {{ $about->content }}
                 </div>
 
+                @if($about->cta)
 
-                <div class="rounded-2xl border border-gray-200 bg-white p-7">
-                    <div class="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-[#fff0f0] text-[#D90000]">
-                        02
-                    </div>
+                    <div class="mt-10">
 
-                    <h3 class="text-lg font-bold">
-                        Business
-                    </h3>
-
-                    <p class="mt-3 text-sm leading-6 text-gray-500">
-                        Memahami kebutuhan bisnis dan menerjemahkannya menjadi
-                        solusi yang dapat diterapkan.
-                    </p>
-                </div>
-
-
-                <div class="rounded-2xl border border-gray-200 bg-white p-7">
-                    <div class="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-[#fff0f0] text-[#D90000]">
-                        03
-                    </div>
-
-                    <h3 class="text-lg font-bold">
-                        Impact
-                    </h3>
-
-                    <p class="mt-3 text-sm leading-6 text-gray-500">
-                        Berorientasi pada hasil dan dampak nyata bagi klien,
-                        partner, dan perkembangan bisnis.
-                    </p>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-   {{-- CTA --}}
-<section class="border-t border-gray-100 bg-white py-20 md:py-24">
-    <div class="mx-auto max-w-6xl px-6">
-
-        <div
-            class="relative overflow-hidden rounded-3xl
-                   border border-gray-200 bg-white
-                   px-8 py-12
-                   shadow-[0_10px_40px_rgba(0,0,0,0.05)]
-                   md:px-14 md:py-14"
-        >
-
-            {{-- Red Accent --}}
-            <div class="absolute left-0 top-0 h-full w-1.5 bg-[#D90000]"></div>
-
-            <div class="relative flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
-
-                {{-- Text --}}
-                <div class="max-w-2xl">
-
-                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#D90000]">
-                        Let's Work Together
-                    </p>
-
-                    <h2 class="mt-4 text-3xl font-bold leading-tight text-black md:text-4xl">
-                        Punya kebutuhan bisnis atau teknologi?
-                    </h2>
-
-                    <p class="mt-5 max-w-xl leading-7 text-gray-500">
-                        Diskusikan kebutuhan Anda bersama BRAMAX dan temukan
-                        solusi yang sesuai dengan tujuan bisnis Anda.
-                    </p>
-
-                </div>
-
-
-                {{-- Button --}}
-                <div class="shrink-0">
-
-                    <a
-                        href="{{ route('home') }}#contact"
-                        class="group inline-flex items-center rounded-full
-                               bg-[#D90000] px-7 py-3.5
-                               text-sm font-semibold text-white
-                               transition duration-300
-                               hover:-translate-y-0.5
-                               hover:bg-[#b80000]
-                               hover:shadow-lg"
-                    >
-                        Diskusikan Kebutuhan
-
-                        <span
-                            class="ml-2 transition-transform duration-300
-                                   group-hover:translate-x-1"
+                        <a
+                            href="{{ route('home') }}#contact"
+                            class="inline-flex items-center rounded-full bg-[#D90000] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#b80000] hover:shadow-lg"
                         >
-                            →
-                        </span>
-                    </a>
+                            {{ $about->cta }}
 
-                </div>
+                            <span class="ml-2">
+                                →
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                @endif
 
             </div>
 
         </div>
 
     </div>
+
 </section>
+
+
+{{-- Vision & Mission --}}
+<section class="border-t border-gray-100 bg-gray-50 py-20 md:py-24">
+
+    <div class="mx-auto max-w-6xl px-6">
+
+        <div class="mb-12 max-w-2xl">
+
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#D90000]">
+                Our Direction
+            </p>
+
+            <h2 class="mt-3 text-3xl font-bold md:text-4xl">
+                Visi & Misi
+            </h2>
+
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+
+          
+{{-- Visi --}}
+<div class="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-8 transition duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-xl md:p-10">
+
+    {{-- Decorative Number --}}
+    <div class="absolute -right-5 -top-10 select-none text-[150px] font-black leading-none text-gray-50 transition duration-300 group-hover:text-[#fff0f3]">
+        VISI
+    </div>
+
+    <div class="relative">
+
+        {{-- Top --}}
+        <div class="flex items-center justify-between">
+
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#fff0f3] text-sm font-bold text-[#D90000]">
+                01
+            </div>
+
+            <span class="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">
+                Direction
+            </span>
+
+        </div>
+
+        {{-- Title --}}
+        <div class="mt-10">
+
+            <div class="mb-4 h-1 w-12 rounded-full bg-[#D90000]"></div>
+
+            <h3 class="text-2xl font-bold tracking-tight text-black md:text-3xl">
+                Visi
+            </h3>
+
+        </div>
+
+        {{-- Content --}}
+         
+        <p class="mt-6 max-w-xl whitespace-pre-line text-base leading-8 text-gray-500">
+            {{ $about->vision ?? 'Visi BRAMAX belum diatur.' }}
+            
+        </p>
+        
+
+        {{-- Bottom --}}
+        <div class="mt-10 flex items-center gap-3 border-t border-gray-100 pt-5">
+
+            <span class="h-2 w-2 rounded-full bg-[#D90000]"></span>
+
+            <span class="text-xs font-medium uppercase tracking-[0.15em] text-gray-400">
+                BRAMAX Vision
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+{{-- Misi --}}
+<div class="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-8 transition duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-xl md:p-10">
+
+    {{-- Decorative Number --}}
+    <div class="absolute -right-5 -top-10 select-none text-[150px] font-black leading-none text-gray-50 transition duration-300 group-hover:text-[#fff0f3]">
+        MISI
+    </div>
+
+    <div class="relative">
+
+        {{-- Top --}}
+        <div class="flex items-center justify-between">
+
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#fff0f3] text-sm font-bold text-[#D90000]">
+                02
+            </div>
+
+            <span class="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">
+                Direction
+            </span>
+
+        </div>
+
+        {{-- Title --}}
+        <div class="mt-10">
+
+            <div class="mb-4 h-1 w-12 rounded-full bg-[#D90000]"></div>
+
+            <h3 class="text-2xl font-bold tracking-tight text-black md:text-3xl">
+                Misi
+            </h3>
+
+        </div>
+
+        {{-- Content --}}
+        <p class="mt-6 max-w-xl whitespace-pre-line text-base leading-8 text-gray-500">
+            {{ $about->mission ?? 'Misi BRAMAX belum diatur.' }}
+        </p>
+
+        {{-- Bottom --}}
+        <div class="mt-10 flex items-center gap-3 border-t border-gray-100 pt-5">
+
+            <span class="h-2 w-2 rounded-full bg-[#D90000]"></span>
+
+            <span class="text-xs font-medium uppercase tracking-[0.15em] text-gray-400">
+                BRAMAX Mission
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<x-cta />
+
+
 </div>
 
 @endsection
-
-

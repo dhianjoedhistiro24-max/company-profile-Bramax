@@ -29,13 +29,14 @@ Kami menggabungkan teknologi, inovasi, dan pendekatan yang berorientasi pada keb
 
     public function update(Request $request)
     {
-        $validated = $request->validate([
+       $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
+            'vision' => ['nullable', 'string'],
+            'mission' => ['nullable', 'string'],
             'cta' => ['nullable', 'string', 'max:255'],
             'banner' => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:2048'],
         ]);
-
         $about = Page::where('slug', 'about')->firstOrFail();
 
         /*
@@ -63,13 +64,15 @@ Kami menggabungkan teknologi, inovasi, dan pendekatan yang berorientasi pada keb
         |--------------------------------------------------------------------------
         */
 
-        $about->update([
-            'title' => $validated['title'],
-            'content' => $validated['content'],
-            'cta' => $validated['cta'] ?? null,
-            'banner' => $bannerPath,
-            'status' => 'published',
-        ]);
+       $about->update([
+        'title' => $validated['title'],
+        'content' => $validated['content'],
+        'vision' => $validated['vision'] ?? null,
+        'mission' => $validated['mission'] ?? null,
+        'cta' => $validated['cta'] ?? null,
+        'banner' => $bannerPath,
+        'status' => 'published',
+    ]);
 
         return redirect()
             ->route('admin.about.edit')

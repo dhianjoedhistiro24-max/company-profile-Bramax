@@ -4,12 +4,13 @@
 
 @section('content')
 
-
 @include('components.home.hero')
 
 @include('components.home.trust-strip')
 
 @include('components.home.business-categories')
+
+@include('components.home.solutions')
 
 @include('components.home.about')
 
@@ -17,10 +18,4 @@
 
 @include('components.home.footer')
 
-
-
-
-
 @endsection
-
-

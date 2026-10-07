@@ -7,7 +7,6 @@ use App\Models\Solution;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use App\Models\ServiceCategory;
 
 class SolutionController extends Controller
 {
@@ -149,12 +148,4 @@ class SolutionController extends Controller
             ->route('admin.solutions.index')
             ->with('success', 'Solution berhasil dihapus.');
     }
-    public function creative()
-        {
-            $category = ServiceCategory::with('services')
-                ->where('slug', 'creative-media-design-promotion')
-                ->firstOrFail();
-
-            return view('solutions.creative', compact('category'));
-        }
 }

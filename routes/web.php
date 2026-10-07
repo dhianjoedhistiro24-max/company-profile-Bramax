@@ -1,12 +1,13 @@
-
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ServiceCategoryController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SolutionController;
 use App\Http\Controllers\ContactController;
+
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
@@ -15,14 +16,27 @@ use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ProjectCategoryController;
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\BusinessCategoryController;
+
 use App\Models\ServiceCategory;
 use App\Models\Project;
-use App\Models\Solution;
 use App\Models\Page;
+use App\Models\Solution;
+
+
+// =========================
+// HOME
+// =========================
 
 Route::get('/', function () {
 
     $businessCategories = ServiceCategory::all();
+
+    $solutions = Solution::where('is_active', true)
+        ->orderBy('sort_order', 'asc')
+        ->get();
 
     $projects = Project::with([
         'category',
@@ -40,11 +54,17 @@ Route::get('/', function () {
 
     return view('welcome', compact(
         'businessCategories',
+        'solutions',
         'projects',
         'about'
     ));
 
 })->name('home');
+
+
+// =========================
+// INSIGHTS
+// =========================
 
 Route::get('/insights', [NewsController::class, 'publicIndex'])
     ->name('insights');
@@ -52,20 +72,28 @@ Route::get('/insights', [NewsController::class, 'publicIndex'])
 Route::get('/insights/{slug}', [NewsController::class, 'show'])
     ->name('insights.show');
 
+
+// =========================
+// AUTH
+// =========================
+
 Route::middleware('guest')->group(function () {
 
     Route::get('/login', [AuthController::class, 'showLogin'])
         ->name('login');
 
     Route::post('/login', [AuthController::class, 'login'])
-        ->name('login.submit');
-        
-    Route::post('/logout', [AuthController::class, 'logout'])
-    ->middleware('auth')
-    ->name('logout');
+        ->name('login.process');
 
 });
 
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->name('logout');
+
+
+// =========================
+// ADMIN
+// =========================
 
 Route::middleware('auth')
     ->prefix('admin')
@@ -74,6 +102,11 @@ Route::middleware('auth')
 
         Route::get('/', [DashboardController::class, 'index'])
             ->name('dashboard');
+
+
+        // =========================
+        // NEWS
+        // =========================
 
         Route::get('/news', [NewsController::class, 'index'])
             ->name('news.index');
@@ -96,6 +129,11 @@ Route::middleware('auth')
         Route::delete('/news/{id}', [NewsController::class, 'destroy'])
             ->name('news.destroy');
 
+
+        // =========================
+        // SERVICES
+        // =========================
+
         Route::get('/services', [AdminServiceController::class, 'index'])
             ->name('services.index');
 
@@ -113,6 +151,11 @@ Route::middleware('auth')
 
         Route::delete('/services/{service}', [AdminServiceController::class, 'destroy'])
             ->name('services.destroy');
+
+
+        // =========================
+        // SOLUTIONS
+        // =========================
 
         Route::get('/solutions', [AdminSolutionController::class, 'index'])
             ->name('solutions.index');
@@ -132,6 +175,11 @@ Route::middleware('auth')
         Route::delete('/solutions/{solution}', [AdminSolutionController::class, 'destroy'])
             ->name('solutions.destroy');
 
+
+        // =========================
+        // CONTACT MESSAGES
+        // =========================
+
         Route::get('/contact-messages', [ContactMessageController::class, 'index'])
             ->name('contact-messages.index');
 
@@ -143,6 +191,11 @@ Route::middleware('auth')
 
         Route::delete('/contact-messages/{contactMessage}', [ContactMessageController::class, 'destroy'])
             ->name('contact-messages.destroy');
+
+
+        // =========================
+        // PROJECTS
+        // =========================
 
         Route::get('/projects', [ProjectController::class, 'index'])
             ->name('projects.index');
@@ -165,6 +218,11 @@ Route::middleware('auth')
         Route::delete('/project-images/{projectImage}', [ProjectController::class, 'destroyImage'])
             ->name('project-images.destroy');
 
+
+        // =========================
+        // PROJECT CATEGORIES
+        // =========================
+
         Route::get('/project-categories', [ProjectCategoryController::class, 'index'])
             ->name('project-categories.index');
 
@@ -183,38 +241,91 @@ Route::middleware('auth')
         Route::delete('/project-categories/{projectCategory}', [ProjectCategoryController::class, 'destroy'])
             ->name('project-categories.destroy');
 
+
+        // =========================
+        // ABOUT
+        // =========================
+
         Route::get('/about', [AboutController::class, 'edit'])
             ->name('about.edit');
 
         Route::put('/about', [AboutController::class, 'update'])
             ->name('about.update');
 
+
+        // =========================
+        // PROFILE
+        // =========================
+
+        Route::get('/profile', [ProfileController::class, 'edit'])
+            ->name('profile.edit');
+
+        Route::patch('/profile', [ProfileController::class, 'update'])
+            ->name('profile.update');
+
+
+        // =========================
+        // SETTINGS
+        // =========================
+
+        Route::get('/settings', [SettingController::class, 'edit'])
+            ->name('settings.edit');
+
+        Route::put('/settings', [SettingController::class, 'update'])
+            ->name('settings.update');
+
+
+        // =========================
+        // BUSINESS CATEGORIES
+        // =========================
+
+        Route::resource(
+            'business-categories',
+            BusinessCategoryController::class
+        );
+
     });
 
 
+// =========================
+// PUBLIC SOLUTIONS
+// =========================
 
-Route::get('/solutions/digital', function () {
-
-    $solutions = Solution::where('is_active', true)
-        ->orderBy('sort_order')
-        ->get();
-
-    return view('solutions.digital', compact('solutions'));
-
-})->name('solutions.digital');
+Route::get('/solutions', [SolutionController::class, 'index'])
+    ->name('solutions.index');
 
 Route::get('/solutions/{slug}', [SolutionController::class, 'show'])
     ->name('solutions.show');
 
+
+// =========================
+// PUBLIC BUSINESS CATEGORIES
+// =========================
+
 Route::get('/business-categories/{slug}', [ServiceCategoryController::class, 'show'])
     ->name('business-categories.show');
+
+
+// =========================
+// PUBLIC SERVICES
+// =========================
 
 Route::get('/services/{slug}', [ServiceController::class, 'show'])
     ->name('services.show');
 
+
+// =========================
+// CONTACT
+// =========================
+
 Route::post('/contact-message', [ContactController::class, 'store'])
     ->middleware('throttle:5,1')
     ->name('contact.message');
+
+
+// =========================
+// PORTFOLIO
+// =========================
 
 Route::get('/portfolio/{slug}', function ($slug) {
 
@@ -230,6 +341,11 @@ Route::get('/portfolio/{slug}', function ($slug) {
 
 })->name('portfolio.show');
 
+
+// =========================
+// PUBLIC ABOUT
+// =========================
+
 Route::get('/about', function () {
 
     $about = Page::where('slug', 'about')
@@ -239,5 +355,3 @@ Route::get('/about', function () {
     return view('about', compact('about'));
 
 })->name('about');
-
-
