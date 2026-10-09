@@ -65,8 +65,6 @@
                 class="mb-1 flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition hover:bg-[#D90000]/10 hover:text-[#D90000]"
             >
 
-                {{-- Dashboard Icon --}}
-
                 <svg
                     class="h-5 w-5 shrink-0"
                     fill="none"
@@ -92,8 +90,6 @@
                 href="{{ route('admin.profile.edit') }}"
                 class="mb-1 flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition hover:bg-[#D90000]/10 hover:text-[#D90000]"
             >
-
-                {{-- Profile Icon --}}
 
                 <svg
                     class="h-5 w-5 shrink-0"
@@ -121,8 +117,6 @@
                 class="mb-1 flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition hover:bg-[#D90000]/10 hover:text-[#D90000]"
             >
 
-                {{-- Settings Icon --}}
-
                 <svg
                     class="h-5 w-5 shrink-0"
                     fill="none"
@@ -135,12 +129,14 @@
                         stroke-width="1.8"
                         d="M10.3 3.2l.4-1.2h2.6l.4 1.2a8.2 8.2 0 012 .8l1.2-.5 1.8 1.8-.5 1.2a8.2 8.2 0 01.8 2l1.2.4v2.6l-1.2.4a8.2 8.2 0 01-.8 2l.5 1.2-1.8 1.8-1.2-.5a8.2 8.2 0 01-2 .8l-.4 1.2h-2.6l-.4-1.2a8.2 8.2 0 01-2-.8l-1.2.5-1.8-1.8.5-1.2a8.2 8.2 0 01-.8-2L2 11.5V8.9l1.2-.4a8.2 8.2 0 01.8-2l-.5-1.2 1.8-1.8 1.2.5a8.2 8.2 0 012-.8z"
                     />
+
                     <circle
                         cx="12"
                         cy="10.2"
                         r="2.5"
                         stroke-width="1.8"
                     />
+
                 </svg>
 
                 Settings
@@ -278,6 +274,32 @@
             </a>
 
 
+            {{-- DOWNLOAD --}}
+
+            <a
+                href="{{ route('admin.downloads.index') }}"
+                class="mb-1 flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition hover:bg-[#D90000]/10 hover:text-[#D90000]"
+            >
+
+                <svg
+                    class="h-5 w-5 shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.8"
+                        d="M12 3v12m0 0l4-4m-4 4l-4-4M5 21h14"
+                    />
+                </svg>
+
+                Download
+
+            </a>
+
+
             {{-- ABOUT --}}
 
             <a
@@ -311,6 +333,7 @@
                         fill="currentColor"
                         stroke="none"
                     />
+
                 </svg>
 
                 About
@@ -479,6 +502,7 @@
 
 
 </div>
+
 
 </body>
 

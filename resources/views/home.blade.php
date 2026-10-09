@@ -1,6 +1,5 @@
 <nav class="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-[#111111]/90 backdrop-blur-md">
 
-```
 <div class="mx-auto flex max-w-[1200px] items-center justify-between px-[7%] py-5">
 
     <!-- LOGO -->
@@ -136,6 +135,6 @@
     </div>
 
 </div>
-```
+`
 
 </nav>

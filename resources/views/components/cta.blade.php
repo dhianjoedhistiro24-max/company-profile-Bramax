@@ -1,3 +1,4 @@
+@if(!request()->is('contact'))
 
 {{-- CTA --}}
 <section class="border-t border-gray-100 bg-white py-20 md:py-24">
@@ -141,3 +142,6 @@
     </div>
 
 </section>
+
+@endif
+

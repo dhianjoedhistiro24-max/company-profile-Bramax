@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="id">
@@ -7,153 +6,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login Admin - BRAMAX</title>
+```
+<title>Login Admin - BRAMAX</title>
 
-    @vite(['resources/css/app.css'])
+@vite(['resources/css/app.css'])
+```
 
 </head>
 
-<body class="min-h-screen bg-[#0b0b0b] text-white">
+<body class="min-h-screen bg-white text-gray-900">
+
+```
+<div
+    class="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-10"
+>
+
+    {{-- Background Accent --}}
+    <div
+        class="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-[#D90000]/5 blur-3xl"
+    ></div>
 
     <div
-        class="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-10"
+        class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-[#D90000]/5 blur-3xl"
+    ></div>
+
+
+    {{-- Login Card --}}
+    <div
+        class="relative w-full max-w-md rounded-3xl border border-gray-200 bg-white p-8 shadow-xl sm:p-10"
     >
 
-        {{-- Background Glow --}}
-        <div
-            class="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-[#D90000]/15 blur-3xl"
-        ></div>
+        {{-- Logo --}}
+        <div class="mb-8 text-center">
 
-        <div
-            class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-[#e91e63]/10 blur-3xl"
-        ></div>
+            <div
+                class="mb-7 text-3xl font-extrabold tracking-tight text-[#D90000]"
+            >
+                BRAMAX
+            </div>
+
+            <p
+                class="mb-2 text-[11px] font-bold uppercase tracking-[0.25em] text-[#D90000]"
+            >
+                Admin Panel
+            </p>
+
+            <h1 class="text-3xl font-bold text-gray-900">
+                Login Admin
+            </h1>
+
+            <p class="mt-2 text-sm text-gray-500">
+                Masuk untuk mengelola website BRAMAX
+            </p>
+
+        </div>
 
 
-        {{-- Login Card --}}
-        <div
-            class="relative w-full max-w-md rounded-3xl border border-white/10 bg-[#151515]/95 p-8 shadow-2xl backdrop-blur-xl sm:p-10"
+        {{-- Error --}}
+        @if ($errors->any())
+
+            <div
+                class="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600"
+            >
+                {{ $errors->first() }}
+            </div>
+
+        @endif
+
+
+        {{-- Form --}}
+        <form
+            action="{{ route('login') }}"
+            method="POST"
+            class="space-y-5"
         >
 
-            {{-- Logo --}}
-            <div class="mb-8 text-center">
+            @csrf
 
-                <div
-                    class="mb-7 bg-gradient-to-r from-[#D90000] to-[#e91e63] bg-clip-text text-3xl font-extrabold tracking-tight text-transparent"
+
+            {{-- Email --}}
+            <div>
+
+                <label
+                    for="email"
+                    class="mb-2 block text-sm font-semibold text-gray-800"
                 >
-                    BRAMAX
-                </div>
+                    Email
+                </label>
 
-                <p
-                    class="mb-2 text-[11px] font-bold uppercase tracking-[0.25em] text-[#e91e63]"
+                <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value="{{ old('email') }}"
+                    placeholder="Masukkan email"
+                    required
+                    autocomplete="email"
+                    class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#D90000] focus:bg-white focus:ring-4 focus:ring-[#D90000]/10"
                 >
-                    Admin Panel
-                </p>
-
-                <h1 class="text-3xl font-bold text-white">
-                    Login Admin
-                </h1>
-
-                <p class="mt-2 text-sm text-white/40">
-                    Masuk untuk mengelola website BRAMAX
-                </p>
 
             </div>
 
 
-            {{-- Error --}}
-            @if ($errors->any())
+            {{-- Password --}}
+            <div>
 
-                <div
-                    class="mb-5 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-300"
+                <label
+                    for="password"
+                    class="mb-2 block text-sm font-semibold text-gray-800"
                 >
-                    {{ $errors->first() }}
-                </div>
+                    Password
+                </label>
 
-            @endif
+                <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Masukkan password"
+                    required
+                    autocomplete="current-password"
+                    class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#D90000] focus:bg-white focus:ring-4 focus:ring-[#D90000]/10"
+                >
+
+            </div>
 
 
-            {{-- Form --}}
-            <form
-                action="{{ route('login') }}"
-                method="POST"
-                class="space-y-5"
+            {{-- Button --}}
+            <button
+                type="submit"
+                class="w-full rounded-xl bg-[#D90000] px-5 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#b80000] hover:shadow-[0_10px_30px_rgba(217,0,0,0.20)]"
             >
+                Login
+            </button>
 
-                @csrf
-
-
-                {{-- Email --}}
-                <div>
-
-                    <label
-                        for="email"
-                        class="mb-2 block text-sm font-semibold text-white"
-                    >
-                        Email
-                    </label>
-
-                    <input
-                        id="email"
-                        type="email"
-                        name="email"
-                        value="{{ old('email') }}"
-                        placeholder="Masukkan email"
-                        required
-                        autocomplete="email"
-                        class="w-full rounded-xl border border-white/10 bg-[#111111] px-4 py-3 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-[#e91e63] focus:ring-4 focus:ring-[#e91e63]/10"
-                    >
-
-                </div>
+        </form>
 
 
-                {{-- Password --}}
-                <div>
+        {{-- Footer --}}
+        <div class="mt-8 text-center">
 
-                    <label
-                        for="password"
-                        class="mb-2 block text-sm font-semibold text-white"
-                    >
-                        Password
-                    </label>
-
-                    <input
-                        id="password"
-                        type="password"
-                        name="password"
-                        placeholder="Masukkan password"
-                        required
-                        autocomplete="current-password"
-                        class="w-full rounded-xl border border-white/10 bg-[#111111] px-4 py-3 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-[#e91e63] focus:ring-4 focus:ring-[#e91e63]/10"
-                    >
-
-                </div>
-
-
-                {{-- Button --}}
-                <button
-                    type="submit"
-                    class="w-full rounded-xl bg-gradient-to-r from-[#D90000] to-[#e91e63] px-5 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(217,0,0,0.25)]"
-                >
-                    Login
-                </button>
-
-            </form>
-
-
-            {{-- Footer --}}
-            <div class="mt-8 text-center">
-
-                <p class="text-[11px] text-white/30">
-                    BRAMAX Teknologi Indonesia
-                </p>
-
-            </div>
+            <p class="text-[11px] text-gray-400">
+                BRAMAX Teknologi Indonesia
+            </p>
 
         </div>
 
     </div>
 
+</div>
+     
+
 </body>
 
 </html>
-

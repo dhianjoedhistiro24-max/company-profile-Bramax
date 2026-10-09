@@ -22,10 +22,12 @@
 
     @yield('content')
 
-    {{-- Live Chat --}}
-    @if (!request()->is('admin/*'))
+   
+@if(!request()->is('admin/*') && !request()->is('contact'))
     <x-live-chat />
 @endif
+
+
 
 </body>
 </html>

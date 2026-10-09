@@ -1,68 +1,57 @@
-```blade
 @extends('layouts.app')
 
 @section('content')
 
-<div class="min-h-screen bg-white text-black">
+<div class="min-h-screen bg-white text-[#111111]">
 
-    {{-- =========================
-         HERO CATEGORY
-    ========================== --}}
-    <section class="border-b border-gray-100 bg-white">
+    {{-- =========================================================
+        HEADER
+    ========================================================== --}}
+    <section class="border-b border-gray-100">
 
-        <div class="mx-auto max-w-7xl px-6 py-20 md:py-24">
+        <div class="max-w-7xl mx-auto px-6 py-16">
 
             {{-- Breadcrumb --}}
-            <div class="mb-8">
+            <div class="flex items-center gap-2 text-sm text-gray-500 mb-6">
 
                 <a
                     href="{{ url('/') }}"
-                    class="text-sm font-normal text-gray-500 transition hover:text-red-600"
+                    class="hover:text-red-600 transition"
                 >
                     Home
                 </a>
 
-                <span class="mx-2 text-gray-300">
-                    /
-                </span>
+                <span>/</span>
 
-                <span class="text-sm font-medium text-red-600">
-                    Business Category
+                <span class="text-gray-900">
+                    {{ $category->name }}
                 </span>
 
             </div>
 
-            {{-- Label --}}
-            <p class="text-xs font-medium uppercase tracking-[0.25em] text-red-600">
-                Business Category
-            </p>
 
-            {{-- Title --}}
-            <h1
-                class="mt-4 text-4xl font-medium tracking-[-0.03em] text-black md:text-6xl"
-            >
-                {{ $category->name }}
-            </h1>
+            {{-- Heading --}}
+            <div class="max-w-4xl">
 
-            {{-- Description --}}
-            @if ($category->description)
-
-                <p
-                    class="mt-6 max-w-3xl text-base font-normal leading-7 text-gray-500 md:text-lg"
-                >
-                    {{ $category->description }}
+                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-red-600 mb-4">
+                    Business Category
                 </p>
 
-            @endif
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight">
+                    {{ $category->name }}
+                </h1>
 
-            {{-- Service Count --}}
-            <div class="mt-8">
+                @if($category->description)
 
-                <span
-                    class="inline-flex items-center rounded-full border border-red-100 bg-red-50 px-4 py-2 text-xs font-medium text-red-600"
-                >
-                    {{ $category->services->count() }} Services
-                </span>
+                    <p class="mt-6 text-lg leading-relaxed text-gray-600 max-w-3xl">
+                        {{ $category->description }}
+                    </p>
+
+                @endif
+
+                <div class="mt-6 text-sm text-gray-500">
+                    {{ $category->services->count() }} Services Available
+                </div>
 
             </div>
 
@@ -71,215 +60,214 @@
     </section>
 
 
-    {{-- =========================
-         SERVICES
-    ========================== --}}
-    <section class="bg-gray-50 py-20 md:py-24">
 
-        <div class="mx-auto max-w-7xl px-6">
+    {{-- =========================================================
+        SERVICES
+    ========================================================== --}}
+    <section class="py-20 overflow-hidden">
+
+        <div class="max-w-7xl mx-auto px-6">
+
 
             {{-- Section Header --}}
-            <div class="max-w-2xl">
+            <div class="flex items-end justify-between gap-6 mb-10">
 
-                <p
-                    class="text-xs font-medium uppercase tracking-[0.25em] text-red-600"
-                >
-                    Our Services
-                </p>
+                <div>
 
-                <h2
-                    class="mt-3 text-3xl font-medium tracking-[-0.03em] text-black md:text-4xl"
-                >
-                    Services in this Category
-                </h2>
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-red-600 mb-3">
+                        Our Services
+                    </p>
 
-                <p
-                    class="mt-4 text-base font-normal leading-7 text-gray-500"
-                >
-                    Explore the services available in
-                    {{ $category->name }}.
-                </p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight">
+                        Explore Our Services
+                    </h2>
+
+                    <p class="mt-3 text-gray-500 max-w-2xl">
+                        Pilih layanan yang sesuai dengan kebutuhan bisnis dan proyek Anda.
+                    </p>
+
+                </div>
+
+
+                {{-- Navigation Buttons --}}
+                <div class="flex gap-2 flex-shrink-0">
+
+                    {{-- Previous --}}
+                    <button
+                        id="service-prev"
+                        type="button"
+                        aria-label="Previous services"
+                        class="w-11 h-11 border border-gray-200 bg-white text-black flex items-center justify-center hover:bg-black hover:text-white transition duration-300"
+                    >
+
+                        <svg
+                            class="w-5 h-5"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+
+                            <path d="M19 12H5"/>
+
+                            <path d="m12 19-7-7 7-7"/>
+
+                        </svg>
+
+                    </button>
+
+
+                    {{-- Next --}}
+                    <button
+                        id="service-next"
+                        type="button"
+                        aria-label="Next services"
+                        class="w-11 h-11 border border-gray-200 bg-white text-black flex items-center justify-center hover:bg-black hover:text-white transition duration-300"
+                    >
+
+                        <svg
+                            class="w-5 h-5"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+
+                            <path d="M5 12h14"/>
+
+                            <path d="m12 5 7 7-7 7"/>
+
+                        </svg>
+
+                    </button>
+
+                </div>
 
             </div>
 
 
-            {{-- =========================
-                 SERVICE GRID
-            ========================== --}}
+
+            {{-- =================================================
+                CAROUSEL
+            ================================================== --}}
             <div
-                class="mt-14 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3"
+                id="service-carousel-viewport"
+                class="overflow-hidden"
             >
 
-                @forelse ($category->services as $service)
+                <div
+                    id="service-carousel-track"
+                    class="flex gap-6"
+                >
 
-                    {{-- TILT CARD --}}
-                    <div
-                        class="tilt-card group relative"
-                        style="perspective: 1000px;"
-                    >
 
-                        <a
-                            href="{{ route('services.show', $service->slug) }}"
-                            class="block"
+                    @foreach($category->services as $service)
+
+                        <article
+                            class="service-carousel-card flex-shrink-0 w-[280px] md:w-[320px]"
                         >
 
                             <div
-                                class="tilt-inner relative overflow-hidden rounded-3xl bg-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-transform duration-200 ease-out will-change-transform"
+                                class="service-card-inner bg-white border border-gray-200 overflow-hidden h-full"
                             >
+
 
                                 {{-- IMAGE --}}
                                 <div
-                                    class="relative aspect-[4/5] w-full overflow-hidden"
+                                    class="relative aspect-square overflow-hidden bg-gray-100"
                                 >
 
-                                    @if ($service->image)
+                                    @if($service->image)
 
                                         <img
                                             src="{{ asset('storage/' . $service->image) }}"
                                             alt="{{ $service->name }}"
-                                            class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                            class="service-image w-full h-full object-cover"
+                                            draggable="false"
                                         >
 
                                     @else
 
                                         <div
-                                            class="flex h-full w-full items-center justify-center bg-gray-100"
+                                            class="w-full h-full flex items-center justify-center bg-gray-100"
                                         >
 
-                                            <div class="text-center">
-
-                                                <div
-                                                    class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-50 text-xl font-medium text-red-600"
-                                                >
-                                                    +
-                                                </div>
-
-                                                <p
-                                                    class="text-sm font-normal text-gray-400"
-                                                >
-                                                    No Image
-                                                </p>
-
-                                            </div>
+                                            <span class="text-gray-400 text-sm">
+                                                No Image
+                                            </span>
 
                                         </div>
 
                                     @endif
 
+                                </div>
 
-                                    {{-- DARK OVERLAY --}}
+
+
+                                {{-- CONTENT --}}
+                                <div class="p-6">
+
+
+                                    {{-- Category --}}
                                     <div
-                                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/5 transition-all duration-500 group-hover:from-black/90 group-hover:via-black/30"
-                                    ></div>
+                                        class="text-xs font-semibold uppercase tracking-[0.15em] text-red-600 mb-3"
+                                    >
+                                        {{ $category->name }}
+                                    </div>
 
 
-                                    {{-- CATEGORY BADGE --}}
-                                    <div
-                                        class="absolute left-5 top-5"
+                                    {{-- Name --}}
+                                    <h3 class="text-xl font-bold leading-tight">
+                                        {{ $service->name }}
+                                    </h3>
+
+
+                                    {{-- Description --}}
+                                    @if($service->description)
+
+                                        <p class="mt-3 text-sm text-gray-500 leading-relaxed line-clamp-3">
+                                            {{ $service->description }}
+                                        </p>
+
+                                    @endif
+
+
+                                    {{-- Explore Service --}}
+                                    <a
+                                        href="{{ route('services.show', $service->slug) }}"
+                                        class="explore-service inline-flex items-center gap-2 mt-6 text-sm font-semibold text-black hover:text-red-600 transition"
                                     >
 
-                                        <span
-                                            class="rounded-full bg-white/90 px-4 py-2 text-[11px] font-medium tracking-wide text-gray-900 shadow-lg backdrop-blur-sm"
-                                        >
-                                            {{ $category->name }}
+                                        <span>
+                                            Explore Service
                                         </span>
 
-                                    </div>
-
-
-                                    {{-- TEXT ON IMAGE --}}
-                                    <div
-                                        class="absolute inset-x-0 bottom-0 p-6 md:p-7"
-                                    >
-
-                                        {{-- SERVICE TITLE --}}
-                                        <h3
-                                            class="text-2xl font-medium leading-tight tracking-[-0.02em] text-white drop-shadow-lg md:text-3xl"
-                                        >
-                                            {{ $service->name }}
-                                        </h3>
-
-
-                                        {{-- DESCRIPTION --}}
-                                        @if ($service->description)
-
-                                            <p
-                                                class="mt-3 line-clamp-3 max-w-xl text-sm font-normal leading-6 text-white/85 drop-shadow-md md:text-base"
-                                            >
-                                                {{ $service->description }}
-                                            </p>
-
-                                        @else
-
-                                            <p
-                                                class="mt-3 text-sm font-normal leading-6 text-white/70"
-                                            >
-                                                Discover more about this service
-                                                from BRAMAX.
-                                            </p>
-
-                                        @endif
-
-                                    </div>
-
-
-                                    {{-- ARROW --}}
-                                    <div
-                                        class="absolute bottom-6 right-6 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-black shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
-                                    >
-
                                         <svg
-                                            class="h-5 w-5"
+                                            class="w-4 h-4 transition-transform duration-300"
+                                            viewBox="0 0 24 24"
                                             fill="none"
                                             stroke="currentColor"
-                                            viewBox="0 0 24 24"
+                                            stroke-width="2"
                                         >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.8"
-                                                d="M7 17L17 7M8 7h9v9"
-                                            />
+
+                                            <path d="M5 12h14"/>
+
+                                            <path d="m13 6 6 6-6 6"/>
+
                                         </svg>
 
-                                    </div>
+                                    </a>
 
                                 </div>
 
                             </div>
 
-                        </a>
+                        </article>
 
-                    </div>
+                    @endforeach
 
-                @empty
 
-                    {{-- EMPTY STATE --}}
-                    <div
-                        class="col-span-full rounded-3xl border border-gray-200 bg-white p-12 text-center"
-                    >
-
-                        <div
-                            class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-red-50 text-xl text-red-600"
-                        >
-                            !
-                        </div>
-
-                        <h3
-                            class="mt-5 text-lg font-medium text-black"
-                        >
-                            Belum ada service
-                        </h3>
-
-                        <p
-                            class="mt-2 text-sm font-normal text-gray-500"
-                        >
-                            Belum ada service yang tersedia untuk kategori ini.
-                        </p>
-
-                    </div>
-
-                @endforelse
+                </div>
 
             </div>
 
@@ -288,64 +276,437 @@
     </section>
 
 
-    {{-- =========================
-         CTA
-    ========================== --}}
+
+    {{-- =========================================================
+        CTA
+    ========================================================== --}}
     <x-cta />
 
 </div>
 
 
-{{-- =========================
-     TILT CARD SCRIPT
-========================== --}}
+
+{{-- =============================================================
+    STYLE
+============================================================= --}}
+<style>
+
+    /*
+    |--------------------------------------------------------------------------
+    | Carousel
+    |--------------------------------------------------------------------------
+    */
+
+    #service-carousel-viewport {
+        overflow: hidden;
+        user-select: none;
+    }
+
+
+    #service-carousel-track {
+        width: max-content;
+        will-change: transform;
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Card
+    |--------------------------------------------------------------------------
+    */
+
+    .service-carousel-card {
+        flex-shrink: 0;
+    }
+
+
+    .service-card-inner {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+
+        transition:
+            transform 0.35s ease,
+            box-shadow 0.35s ease;
+    }
+
+
+    .service-card-inner:hover {
+
+        transform: translateY(-6px);
+
+        box-shadow:
+            0 18px 45px rgba(0, 0, 0, 0.10);
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Image
+    |--------------------------------------------------------------------------
+    */
+
+    .service-image {
+
+        transition:
+            transform 0.6s ease;
+
+        pointer-events: none;
+
+    }
+
+
+    .service-card-inner:hover .service-image {
+
+        transform: scale(1.05);
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Button
+    |--------------------------------------------------------------------------
+    */
+
+    #service-prev,
+    #service-next {
+
+        cursor: pointer;
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Mobile
+    |--------------------------------------------------------------------------
+    */
+
+    @media (max-width: 640px) {
+
+        .service-carousel-card {
+
+            width: 260px;
+
+        }
+
+    }
+
+</style>
+
+
+
+{{-- =============================================================
+    JAVASCRIPT
+============================================================= --}}
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
 
-        const cards = document.querySelectorAll('.tilt-card');
+document.addEventListener('DOMContentLoaded', function () {
 
-        cards.forEach(card => {
+    const viewport =
+        document.getElementById('service-carousel-viewport');
 
-            const inner = card.querySelector('.tilt-inner');
+    const track =
+        document.getElementById('service-carousel-track');
 
-            card.addEventListener('mousemove', function (event) {
+    const prevButton =
+        document.getElementById('service-prev');
 
-                const rect = card.getBoundingClientRect();
+    const nextButton =
+        document.getElementById('service-next');
 
-                const x = event.clientX - rect.left;
-                const y = event.clientY - rect.top;
 
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
+    if (!viewport || !track) {
+        return;
+    }
 
-                const rotateY =
-                    ((x - centerX) / centerX) * 7;
 
-                const rotateX =
-                    ((centerY - y) / centerY) * 7;
+    /*
+    |--------------------------------------------------------------------------
+    | Variables
+    |--------------------------------------------------------------------------
+    */
 
-                inner.style.transform = `
-                    rotateX(${rotateX}deg)
-                    rotateY(${rotateY}deg)
-                    scale(1.025)
-                `;
+    let position = 0;
 
-            });
+    let isHovering = false;
 
-            card.addEventListener('mouseleave', function () {
+    let lastTime = performance.now();
 
-                inner.style.transform = `
-                    rotateX(0deg)
-                    rotateY(0deg)
-                    scale(1)
-                `;
 
-            });
+    /*
+    |--------------------------------------------------------------------------
+    | Settings
+    |--------------------------------------------------------------------------
+    */
 
-        });
+    const AUTO_SPEED = 35;
 
-    });
+    const GAP = 24;
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get Card Width
+    |--------------------------------------------------------------------------
+    */
+
+    function getCardWidth() {
+
+        const card =
+            track.querySelector('.service-carousel-card');
+
+        if (!card) {
+            return 320;
+        }
+
+        return card.offsetWidth + GAP;
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Maximum Position
+    |--------------------------------------------------------------------------
+    */
+
+    function getMaxPosition() {
+
+        return Math.max(
+            0,
+            track.scrollWidth - viewport.clientWidth
+        );
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Render
+    |--------------------------------------------------------------------------
+    */
+
+    function render() {
+
+        track.style.transform =
+            `translate3d(${-position}px, 0, 0)`;
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Next
+    |--------------------------------------------------------------------------
+    */
+
+    function nextService() {
+
+        const cardWidth =
+            getCardWidth();
+
+        const maxPosition =
+            getMaxPosition();
+
+
+        position += cardWidth;
+
+
+        if (position >= maxPosition) {
+
+            position = 0;
+
+        }
+
+
+        render();
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Previous
+    |--------------------------------------------------------------------------
+    */
+
+    function previousService() {
+
+        const cardWidth =
+            getCardWidth();
+
+        const maxPosition =
+            getMaxPosition();
+
+
+        position -= cardWidth;
+
+
+        if (position < 0) {
+
+            position = maxPosition;
+
+        }
+
+
+        render();
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Button Events
+    |--------------------------------------------------------------------------
+    */
+
+    if (nextButton) {
+
+        nextButton.addEventListener(
+            'click',
+            nextService
+        );
+
+    }
+
+
+    if (prevButton) {
+
+        prevButton.addEventListener(
+            'click',
+            previousService
+        );
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Pause When Hover
+    |--------------------------------------------------------------------------
+    */
+
+    viewport.addEventListener(
+        'mouseenter',
+        function () {
+
+            isHovering = true;
+
+        }
+    );
+
+
+    viewport.addEventListener(
+        'mouseleave',
+        function () {
+
+            isHovering = false;
+
+        }
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Automatic Movement
+    |--------------------------------------------------------------------------
+    */
+
+    function animate(currentTime) {
+
+        const delta =
+            (currentTime - lastTime) / 1000;
+
+        lastTime =
+            currentTime;
+
+
+        /*
+        | Bergerak otomatis ke kiri
+        */
+
+        if (!isHovering) {
+
+            position +=
+                AUTO_SPEED * delta;
+
+        }
+
+
+        /*
+        | Jika sudah sampai ujung,
+        | kembali ke awal
+        */
+
+        const maxPosition =
+            getMaxPosition();
+
+
+        if (
+            maxPosition > 0 &&
+            position >= maxPosition
+        ) {
+
+            position = 0;
+
+        }
+
+
+        render();
+
+
+        requestAnimationFrame(animate);
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Initial Render
+    |--------------------------------------------------------------------------
+    */
+
+    render();
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Start Animation
+    |--------------------------------------------------------------------------
+    */
+
+    requestAnimationFrame(animate);
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Resize
+    |--------------------------------------------------------------------------
+    */
+
+    window.addEventListener(
+        'resize',
+        function () {
+
+            const maxPosition =
+                getMaxPosition();
+
+
+            if (position > maxPosition) {
+
+                position = maxPosition;
+
+            }
+
+
+            render();
+
+        }
+    );
+
+});
+
 </script>
 
 @endsection
-```

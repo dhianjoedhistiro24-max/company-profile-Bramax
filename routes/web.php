@@ -7,6 +7,9 @@ use App\Http\Controllers\ServiceCategoryController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SolutionController;
 use App\Http\Controllers\ContactController;
+use App\Models\Download;
+
+
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NewsController;
@@ -19,6 +22,8 @@ use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\BusinessCategoryController;
+use App\Http\Controllers\Admin\DownloadController;
+
 
 use App\Models\ServiceCategory;
 use App\Models\Project;
@@ -284,6 +289,16 @@ Route::middleware('auth')
             BusinessCategoryController::class
         );
 
+        // DOWNLOAD
+        Route::get('/downloads', [DownloadController::class, 'index'])->name('downloads.index');
+        Route::get('/downloads/create', [DownloadController::class, 'create'])->name('downloads.create');
+        Route::post('/downloads', [DownloadController::class, 'store'])->name('downloads.store');
+        Route::get('/downloads/{download}/edit', [DownloadController::class, 'edit'])->name('downloads.edit');
+        Route::put('/downloads/{download}', [DownloadController::class, 'update'])->name('downloads.update');
+        Route::delete('/downloads/{download}', [DownloadController::class, 'destroy'])->name('downloads.destroy');
+
+
+
     });
 
 
@@ -355,3 +370,25 @@ Route::get('/about', function () {
     return view('about', compact('about'));
 
 })->name('about');
+
+
+// =========================
+// CONTACT
+// =========================
+
+Route::get('/contact', [ContactController::class, 'index'])
+    ->name('contact');
+
+Route::post('/contact-message', [ContactController::class, 'store'])
+    ->middleware('throttle:5,1')
+    ->name('contact.message');
+
+
+// PUBLIC DOWNLOAD
+Route::get('/download', function () {
+    $downloads = Download::where('is_active', true)
+        ->latest()
+        ->get();
+
+    return view('download', compact('downloads'));
+})->name('download');

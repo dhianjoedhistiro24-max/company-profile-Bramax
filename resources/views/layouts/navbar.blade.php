@@ -15,13 +15,19 @@
              NAVBAR UTAMA
         ========================== --}}
         <div class="flex h-[72px] items-center justify-between">
-
-            {{-- LOGO --}}
-            <a
+            <a 
                 href="{{ route('home') }}"
-                class="shrink-0 text-xl font-extrabold tracking-tight text-[#D90000] sm:text-2xl"
+                class="flex items-center gap-1.5 shrink-0"
             >
-                {{ $setting?->site_name ?? 'BRAMAX' }}
+                <img 
+                    src="{{ asset('images/logo.png') }}"
+                    alt="BRAMAX"
+                    class="h-20 w-auto object-contain"
+                >
+
+                <span class="text-xl font-normal tracking-tight text-black sm:text-2xl">
+                    BRAMAX
+                </span>
             </a>
 
 
@@ -280,3 +286,4 @@
     </div>
 </nav>
 
+    
