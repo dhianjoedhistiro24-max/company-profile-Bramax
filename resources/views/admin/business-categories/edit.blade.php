@@ -1,4 +1,3 @@
-
 @extends('layouts.admin')
 
 @section('content')
@@ -7,7 +6,6 @@
 
     <div class="mx-auto max-w-4xl">
 
-        {{-- HEADER --}}
         <div class="mb-8">
 
             <a
@@ -31,8 +29,6 @@
 
         </div>
 
-
-        {{-- ERROR --}}
         @if ($errors->any())
 
             <div class="mb-6 rounded-xl border border-red-200 bg-red-50 px-5 py-4">
@@ -53,9 +49,8 @@
 
         @endif
 
-
-        {{-- FORM --}}
         <form
+            id="edit-business-category"
             action="{{ route('admin.business-categories.update', $businessCategory) }}"
             method="POST"
             class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)]"
@@ -64,12 +59,8 @@
             @csrf
             @method('PUT')
 
-
-            {{-- FORM CONTENT --}}
             <div class="space-y-7 p-6 md:p-8">
 
-
-                {{-- NAME --}}
                 <div>
 
                     <label
@@ -96,8 +87,6 @@
 
                 </div>
 
-
-                {{-- SLUG --}}
                 <div>
 
                     <label
@@ -128,8 +117,6 @@
 
                 </div>
 
-
-                {{-- ICON --}}
                 <div>
 
                     <label
@@ -160,8 +147,6 @@
 
                 </div>
 
-
-                {{-- DESCRIPTION --}}
                 <div>
 
                     <label
@@ -189,33 +174,18 @@
 
             </div>
 
-
-            {{-- FORM FOOTER --}}
             <div class="flex flex-col-reverse gap-3 border-t border-gray-100 bg-gray-50 px-6 py-5 sm:flex-row sm:justify-between md:px-8">
 
-                {{-- HAPUS --}}
-                <form
-                    action="{{ route('admin.business-categories.destroy', $businessCategory) }}"
-                    method="POST"
-                    onsubmit="return confirm('Yakin ingin menghapus category ini?')"
+                <button
+                    type="submit"
+                    form="delete-business-category"
+                    class="inline-flex items-center justify-center rounded-xl border border-red-200 bg-white px-5 py-3 text-sm font-semibold text-[#D90000] transition duration-300 hover:bg-red-50"
                 >
-
-                    @csrf
-                    @method('DELETE')
-
-                    <button
-                        type="submit"
-                        class="inline-flex items-center justify-center rounded-xl border border-red-200 bg-white px-5 py-3 text-sm font-semibold text-[#D90000] transition duration-300 hover:bg-red-50"
-                    >
-                        Hapus Category
-                    </button>
-
-                </form>
-
+                    Hapus Category
+                </button>
 
                 <div class="flex flex-col gap-3 sm:flex-row">
 
-                    {{-- BATAL --}}
                     <a
                         href="{{ route('admin.business-categories.index') }}"
                         class="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm font-semibold text-gray-600 transition duration-300 hover:border-gray-300 hover:bg-gray-100 hover:text-[#111111]"
@@ -223,10 +193,9 @@
                         Batal
                     </a>
 
-
-                    {{-- UPDATE --}}
                     <button
                         type="submit"
+                        form="edit-business-category"
                         class="inline-flex items-center justify-center rounded-xl bg-[#D90000] px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:bg-[#B00000] hover:shadow-lg"
                     >
                         Simpan Perubahan
@@ -236,6 +205,16 @@
 
             </div>
 
+        </form>
+
+        <form
+            id="delete-business-category"
+            action="{{ route('admin.business-categories.destroy', $businessCategory) }}"
+            method="POST"
+            onsubmit="return confirm('Yakin ingin menghapus category ini?')"
+        >
+            @csrf
+            @method('DELETE')
         </form>
 
     </div>

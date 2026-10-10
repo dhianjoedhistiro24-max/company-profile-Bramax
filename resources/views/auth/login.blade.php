@@ -6,17 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
+
 <title>Login Admin - BRAMAX</title>
 
 @vite(['resources/css/app.css'])
-```
+
 
 </head>
 
 <body class="min-h-screen bg-white text-gray-900">
 
-```
+
 <div
     class="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-10"
 >
